@@ -13,7 +13,7 @@ import javafx.stage.Stage;
 
 /**
  *
- * @author Ty
+ * @author Ty Hunt
  */
 public class Inventory_Project extends Application {
     
