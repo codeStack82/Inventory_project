@@ -11,6 +11,8 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
+import inventory_project.Bolt;
+import inventory_project.Sprocket;
 
 /**
  *
@@ -23,8 +25,11 @@ public class FXMLDocumentController implements Initializable {
     
     @FXML
     private void handleButtonAction(ActionEvent event) {
-        System.out.println("You clicked me!");
-        label.setText("Hello World!");
+        Bolt longBolt = new Bolt(1,"test", 34.99, true, 3,5);
+        Sprocket bigSprocket = new Sprocket(1,"test", 35.00, true, 3 ,5);
+        System.out.println(longBolt.toString());
+        System.out.println(bigSprocket.toString());
+       
     }
     
     @Override
