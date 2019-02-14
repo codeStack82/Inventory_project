@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package inventory_project;
+package inventory_project.Products_Folder;
 import java.util.ArrayList;
-import inventory_project.Parts;
+import inventory_project.Parts_Folder.Parts;
 
 /**
  *

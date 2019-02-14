@@ -11,8 +11,8 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
-import inventory_project.Bolt;
-import inventory_project.Sprocket;
+import inventory_project.Parts_Folder.Bolt;
+import inventory_project.Parts_Folder.Sprocket;
 
 /**
  *

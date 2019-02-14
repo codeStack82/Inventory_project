@@ -3,14 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package inventory_project;
+package inventory_project.Parts_Folder;
 import java.lang.StringBuilder;
-/**
- *
- * @author Ty
- */
-public class Sprocket extends Parts {
-     
+
+public class Bolt {
+    
     //Class Variables
     int partID;
     String name;
@@ -20,7 +17,7 @@ public class Sprocket extends Parts {
     int max;
 
     //Constructor(s)
-    public Sprocket(int partID, String name, double price, boolean inStock, int min, int max) {
+    public Bolt(int partID, String name, double price, boolean inStock, int min, int max) {
         this.partID = partID;
         this.name = name;
         this.price = price;
