@@ -1,12 +1,11 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package inventory_project.Parts_Folder;
+import inventory_project.Parts_Folder.Part;
 import java.lang.StringBuilder;
-
-public class Bolt {
+/**
+ *
+ * @author Ty
+ */
+public class Ereaser {
     
     //Class Variables
     int partID;
@@ -17,7 +16,7 @@ public class Bolt {
     int max;
 
     //Constructor(s)
-    public Bolt(int partID, String name, double price, boolean inStock, int min, int max) {
+    public Ereaser(int partID, String name, double price, boolean inStock, int min, int max) {
         this.partID = partID;
         this.name = name;
         this.price = price;
@@ -53,7 +52,7 @@ public class Bolt {
     
     @Override
     public String toString(){
-        StringBuilder sb = new StringBuilder("Bolt information:\n");
+        StringBuilder sb = new StringBuilder("Ereaser information:\n");
         sb.append("\tPart Id: ");
         sb.append(this.getPartID());
         sb.append(", Name: ");
@@ -70,5 +69,6 @@ public class Bolt {
         return sb.toString();
   
     }
+    
     
 }

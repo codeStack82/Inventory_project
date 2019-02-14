@@ -12,7 +12,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import inventory_project.Parts_Folder.Bolt;
-import inventory_project.Parts_Folder.Sprocket;
+import inventory_project.Parts_Folder.Washer;
 
 /**
  *
@@ -26,7 +26,8 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private void handleButtonAction(ActionEvent event) {
         Bolt longBolt = new Bolt(1,"test", 34.99, true, 3,5);
-        Sprocket bigSprocket = new Sprocket(1,"test", 35.00, true, 3 ,5);
+        Washer bigSprocket = new Washer(1,"test", 35.00, true, 3 ,5);
+        
         System.out.println(longBolt.toString());
         System.out.println(bigSprocket.toString());
        

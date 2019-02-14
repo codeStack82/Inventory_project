@@ -4,10 +4,14 @@
  * and open the template in the editor.
  */
 package inventory_project.Parts_Folder;
+import inventory_project.Parts_Folder.Part;
 import java.lang.StringBuilder;
-
-public class Bolt {
-    
+/**
+ *
+ * @author Ty
+ */
+public class Nut extends Part {
+     
     //Class Variables
     int partID;
     String name;
@@ -17,7 +21,7 @@ public class Bolt {
     int max;
 
     //Constructor(s)
-    public Bolt(int partID, String name, double price, boolean inStock, int min, int max) {
+    public Nut(int partID, String name, double price, boolean inStock, int min, int max) {
         this.partID = partID;
         this.name = name;
         this.price = price;
@@ -53,7 +57,7 @@ public class Bolt {
     
     @Override
     public String toString(){
-        StringBuilder sb = new StringBuilder("Bolt information:\n");
+        StringBuilder sb = new StringBuilder("Nut information:\n");
         sb.append("\tPart Id: ");
         sb.append(this.getPartID());
         sb.append(", Name: ");

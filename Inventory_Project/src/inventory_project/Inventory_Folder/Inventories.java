@@ -6,7 +6,7 @@
 package inventory_project.Inventory_Folder;
 import java.util.ArrayList;
 import inventory_project.Products_Folder.Products;
-import inventory_project.Parts_Folder.Parts;
+import inventory_project.Parts_Folder.Part;
 import inventory_project.Products_Folder.Products;
 
 /**
@@ -15,7 +15,7 @@ import inventory_project.Products_Folder.Products;
  */
 public class Inventories {
     ArrayList products = new ArrayList<Products>();
-    ArrayList allParts = new ArrayList<Parts>();
+    ArrayList allParts = new ArrayList<Part>();
     
     //TODO: implement
     public void addProduct(Products product){
@@ -48,7 +48,7 @@ public class Inventories {
     }
     
     //TODO: implement
-    public boolean deletePart(Parts part){
+    public boolean deletePart(Part part){
         boolean isDeleted = false;
         
         return isDeleted;

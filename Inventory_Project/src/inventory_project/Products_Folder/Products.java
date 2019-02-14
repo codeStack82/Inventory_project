@@ -5,7 +5,7 @@
  */
 package inventory_project.Products_Folder;
 import java.util.ArrayList;
-import inventory_project.Parts_Folder.Parts;
+import inventory_project.Parts_Folder.Part;
 
 /**
  *
@@ -14,7 +14,7 @@ import inventory_project.Parts_Folder.Parts;
 public class Products {
     
     //Class Variables
-    private ArrayList associatedParts = new ArrayList<Parts>();
+    private ArrayList associatedParts = new ArrayList<Part>();
     private int productID;
     private String name; //
     private double price;
@@ -58,7 +58,7 @@ public class Products {
     public int getProductID(){return this.productID;}
         
     //TODO: implement 
-    public void addAssociatedPart(Parts part){
+    public void addAssociatedPart(Part part){
 
     }
     
