@@ -38,7 +38,7 @@ public class Pencil {
 
     public void setPrice(double price) {this.price = price;}
 
-    public boolean isInStock() {return this.inStock;}
+    public boolean getInStock() {return this.inStock;}
 
     public void setInStock(boolean inStock) {this.inStock = inStock;}
 
@@ -60,7 +60,7 @@ public class Pencil {
         sb.append(", Price: ");
         sb.append(this.getPrice());
         sb.append(", In Stock: ");
-        sb.append(this.isInStock());
+        sb.append(this.getInStock());
         sb.append(", Min: ");
         sb.append(this.getMin());
         sb.append(", Max: ");

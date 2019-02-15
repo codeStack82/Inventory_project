@@ -5,20 +5,20 @@
  */
 package inventory_project.Inventory_Folder;
 import java.util.ArrayList;
-import inventory_project.Products_Folder.Products;
+import inventory_project.Products_Folder.Product;
 import inventory_project.Parts_Folder.Part;
-import inventory_project.Products_Folder.Products;
+import inventory_project.Products_Folder.Product;
 
 /**
  *
  * @author Ty
  */
 public class Inventories {
-    ArrayList products = new ArrayList<Products>();
+    ArrayList products = new ArrayList<Product>();
     ArrayList allParts = new ArrayList<Part>();
     
     //TODO: implement
-    public void addProduct(Products product){
+    public void addProduct(Product product){
     
     }
     
@@ -67,7 +67,7 @@ public class Inventories {
     }
     
     //TODO: implement
-    public String toString(Products product){
+    public String toString(Product product){
         return "In Inventory .toSring() method";
     }
 }
