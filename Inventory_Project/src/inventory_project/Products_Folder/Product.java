@@ -1,6 +1,7 @@
 package inventory_project.Products_Folder;
-import java.util.ArrayList;
 import inventory_project.Parts_Folder.Part;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Iterator;
 
 public class Product {
@@ -24,7 +25,7 @@ public class Product {
         this.inStock = inStock;
         this.min = min;
         this.max = max;
-        
+       
         //Additional Product Fields
         this.productCount += 1;
     }
@@ -57,21 +58,21 @@ public class Product {
     public void setProductID(int productID){this.productID = productID;}
     
     public int getProductID(){return this.productID;}
-        
+
+    //TODO: implement Error handling
     public void addAssociatedPart(Part part){
-        
         this.associatedParts.add(part);
     }
     
-    //TODO: implement
+    //TODO: implement Error handling
     public boolean removeAssocatedPart(int partID){
         boolean partRemoved = false;
         
         //Check if ID exists list
-        boolean isIdInList = (this.associatedParts.contains(partID));
+        boolean isPartIDInList = (partID < this.associatedParts.size());
         
         //Remove from list
-        if(isIdInList){
+        if(isPartIDInList){
             this.associatedParts.remove(partID);
             partRemoved = true;
         }
@@ -79,10 +80,11 @@ public class Product {
         return partRemoved;
     }
     
-    //TODOD: implement
-    public int lookUpAssociatedPart(int partID){
-    
-        return partID;
+    ///TODO: implement Error handling
+    public Part lookUpAssociatedPart(int partID){
+        
+        Part part = (Part)this.associatedParts.get(partID);
+        return part;
     }
     
     @Override

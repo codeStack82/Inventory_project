@@ -36,21 +36,29 @@ public class Test_Product {
     
     //---------Test addAssociatedPart method
     large_boltKitProduct.addAssociatedPart(bigNut);
-    System.out.println("-------Add Associated Part Method Test-------\n"+large_boltKitProduct.toString());
+    System.out.println("-------Add Assosciated Part Method Test-------\n"+large_boltKitProduct.toString());
         
     String productParts1 = large_boltKitProduct.printPartsInProduct(); 
     System.out.println(productParts1);
         
-    
+
     ////---------Test removeAssociatedPart method
     System.out.println("------Remove Associated Part Method Test-------\n"+large_boltKitProduct.toString());
     
     //Remove part by ID
-    boolean wasPartRemoved = large_boltKitProduct.removeAssocatedPart(1);
+    boolean wasPartRemoved = large_boltKitProduct.removeAssocatedPart(2);
     
     System.out.println("\tWas part Removed?:\t" + wasPartRemoved);
     String productParts2 = large_boltKitProduct.printPartsInProduct(); 
     System.out.println(productParts2);
+    
+    ////---------Test lookUpAssociatedPart method
+    System.out.println("------Look Up Associated Part Method Test-------\n"+large_boltKitProduct.toString());
+    
+    Part part = large_boltKitProduct.lookUpAssociatedPart(1);
+    System.out.println("\t\tLooked up part: "+part.toString());
+    String productParts3 = large_boltKitProduct.printPartsInProduct(); 
+    System.out.println(productParts3);
         
     }
 }
