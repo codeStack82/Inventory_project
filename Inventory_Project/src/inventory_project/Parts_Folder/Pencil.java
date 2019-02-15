@@ -8,12 +8,13 @@ import java.lang.StringBuilder;
 public class Pencil {
     
     //Class Variables
-    int partID;
-    String name;
-    double price;
-    boolean inStock;
-    int min;
-    int max;
+    private int partID;
+    private String name;
+    private double price;
+    private boolean inStock;
+    private int min;
+    private int max;
+    private static int pencilCount = 0;
 
     //Constructor(s)
     public Pencil(int partID, String name, double price, boolean inStock, int min, int max) {
@@ -23,9 +24,12 @@ public class Pencil {
         this.inStock = inStock;
         this.min = min;
         this.max = max;
+        this.pencilCount += 1;
     }
     
     //Getters and Setters
+    public int getPartCount(){return this.pencilCount;}
+    
     public int getPartID() {return this.partID;}
 
     public void setPartID(int partID) {this.partID = partID;}
@@ -52,7 +56,7 @@ public class Pencil {
     
     @Override
     public String toString(){
-        StringBuilder sb = new StringBuilder("Pencil information:\n");
+        StringBuilder sb = new StringBuilder("Pencil information: ");
         sb.append("\tPart Id: ");
         sb.append(this.getPartID());
         sb.append(", Name: ");

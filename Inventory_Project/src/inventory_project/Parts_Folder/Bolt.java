@@ -9,13 +9,14 @@ import java.lang.StringBuilder;
 public class Bolt {
     
     //Class Variables
-    int partID;
-    String name;
-    double price;
-    boolean inStock;
-    int min;
-    int max;
-
+    private int partID;
+    private String name;
+    private double price;
+    private boolean inStock;
+    private int min;
+    private int max;
+    private static int boltCount = 0;
+    
     //Constructor(s)
     public Bolt(int partID, String name, double price, boolean inStock, int min, int max) {
         this.partID = partID;
@@ -24,9 +25,12 @@ public class Bolt {
         this.inStock = inStock;
         this.min = min;
         this.max = max;
+        this.boltCount += 1;
     }
     
     //Getters and Setters
+    public int getPartCount(){return this.boltCount;}
+    
     public int getPartID() {return this.partID;}
 
     public void setPartID(int partID) {this.partID = partID;}
@@ -53,7 +57,7 @@ public class Bolt {
     
     @Override
     public String toString(){
-        StringBuilder sb = new StringBuilder("Bolt information:\n");
+        StringBuilder sb = new StringBuilder("Bolt information: ");
         sb.append("\tPart Id: ");
         sb.append(this.getPartID());
         sb.append(", Name: ");

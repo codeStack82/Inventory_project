@@ -1,6 +1,7 @@
 package inventory_project.Parts_Folder;
 
 public abstract class Part {
+    public abstract int getPartCount();
     
     public abstract int getPartID();
 

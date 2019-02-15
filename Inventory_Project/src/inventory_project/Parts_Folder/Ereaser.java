@@ -8,13 +8,14 @@ import java.lang.StringBuilder;
 public class Ereaser {
     
     //Class Variables
-    int partID;
-    String name;
-    double price;
-    boolean inStock;
-    int min;
-    int max;
-
+    private int partID;
+    private String name;
+    private double price;
+    private boolean inStock;
+    private int min;
+    private int max;
+    private static int ereaserCount = 0;
+   
     //Constructor(s)
     public Ereaser(int partID, String name, double price, boolean inStock, int min, int max) {
         this.partID = partID;
@@ -23,9 +24,12 @@ public class Ereaser {
         this.inStock = inStock;
         this.min = min;
         this.max = max;
+        this.ereaserCount += 1;
     }
     
     //Getters and Setters
+    public int getPartCount(){return this.ereaserCount;}
+    
     public int getPartID() {return this.partID;}
 
     public void setPartID(int partID) {this.partID = partID;}
@@ -52,7 +56,7 @@ public class Ereaser {
     
     @Override
     public String toString(){
-        StringBuilder sb = new StringBuilder("Ereaser information:\n");
+        StringBuilder sb = new StringBuilder("Ereaser information: ");
         sb.append("\tPart Id: ");
         sb.append(this.getPartID());
         sb.append(", Name: ");

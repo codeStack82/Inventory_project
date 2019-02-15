@@ -1,6 +1,7 @@
 package inventory_project.Products_Folder;
 import java.util.ArrayList;
 import inventory_project.Parts_Folder.Part;
+import java.util.Iterator;
 
 public class Product {
     
@@ -13,7 +14,7 @@ public class Product {
     private int min;
     private int max;
     private static int productCount = 0;
-    private static int productPartCount = 0;
+    private int productPartCount = this.associatedParts.size();
     
     public Product(ArrayList associatedParts, int productID, String name, double price, boolean inStock, int min, int max) {
         this.associatedParts = associatedParts;
@@ -26,13 +27,12 @@ public class Product {
         
         //Additional Product Fields
         this.productCount += 1;
-        this.productPartCount = associatedParts.size();
     }
     
     //Getters and Setters     
     public int getProductCount(){return this.productCount;}
     
-    public int getProductPartsCount(){return this.productPartCount;}
+    public int getProductPartCount(){return this.associatedParts.size();}
     
     public void setName(String name){this.name = name;}
     
@@ -58,14 +58,23 @@ public class Product {
     
     public int getProductID(){return this.productID;}
         
-    //TODO: implement 
     public void addAssociatedPart(Part part){
-
+        
+        this.associatedParts.add(part);
     }
     
     //TODO: implement
     public boolean removeAssocatedPart(int partID){
         boolean partRemoved = false;
+        
+        //Check if ID exists list
+        boolean isIdInList = (this.associatedParts.contains(partID));
+        
+        //Remove from list
+        if(isIdInList){
+            this.associatedParts.remove(partID);
+            partRemoved = true;
+        }
         
         return partRemoved;
     }
@@ -78,7 +87,7 @@ public class Product {
     
     @Override
     public String toString(){
-        StringBuilder sb = new StringBuilder("Product information:\n");
+        StringBuilder sb = new StringBuilder("Product information: \n");
         sb.append("\tProduct Id: ");
         sb.append(this.getProductID());
         sb.append(", Name: ");
@@ -91,7 +100,24 @@ public class Product {
         sb.append(this.getMin());
         sb.append(", Max: ");
         sb.append(this.getMax());
-        
+        sb.append(", Product Count: ");
+        sb.append(this.getProductCount());
+        sb.append(", Product Part Count: ");
+        sb.append(this.getProductPartCount());
+        return sb.toString();
+    }
+    
+    public String printPartsInProduct(){
+        StringBuilder sb = new StringBuilder();
+  
+        //Iterate Parts List
+       Iterator iter = this.associatedParts.iterator();
+       System.out.println("\tProduct Parts: ");
+        while(iter.hasNext()){
+            System.out.println("\t\t"+iter.next().toString());
+            
+        }
+    
         return sb.toString();
     }
       

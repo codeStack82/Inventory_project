@@ -8,12 +8,13 @@ import java.lang.StringBuilder;
 public class Washer extends Part {
      
     //Class Variables
-    int partID;
-    String name;
-    double price;
-    boolean inStock;
-    int min;
-    int max;
+    private int partID;
+    private String name;
+    private double price;
+    private boolean inStock;
+    private int min;
+    private int max;
+    private static int washerCount = 0;
 
     //Constructor(s)
     public Washer(int partID, String name, double price, boolean inStock, int min, int max) {
@@ -23,9 +24,12 @@ public class Washer extends Part {
         this.inStock = inStock;
         this.min = min;
         this.max = max;
+        this.washerCount += 1;
     }
     
     //Getters and Setters
+    public int getPartCount(){return this.washerCount;}
+    
     public int getPartID() {return this.partID;}
 
     public void setPartID(int partID) {this.partID = partID;}
@@ -52,7 +56,7 @@ public class Washer extends Part {
     
     @Override
     public String toString(){
-        StringBuilder sb = new StringBuilder("Washer information:\n");
+        StringBuilder sb = new StringBuilder("Washer information: ");
         sb.append("\tPart Id: ");
         sb.append(this.getPartID());
         sb.append(", Name: ");

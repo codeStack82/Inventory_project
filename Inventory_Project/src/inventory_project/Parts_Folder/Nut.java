@@ -13,13 +13,14 @@ import java.lang.StringBuilder;
 public class Nut extends Part {
      
     //Class Variables
-    int partID;
-    String name;
-    double price;
-    boolean inStock;
-    int min;
-    int max;
-
+    private int partID;
+    private String name;
+    private double price;
+    private boolean inStock;
+    private int min;
+    private int max;
+    private static int nutCount = 0;
+    
     //Constructor(s)
     public Nut(int partID, String name, double price, boolean inStock, int min, int max) {
         this.partID = partID;
@@ -28,9 +29,12 @@ public class Nut extends Part {
         this.inStock = inStock;
         this.min = min;
         this.max = max;
+        this.nutCount += 1;
     }
     
     //Getters and Setters
+    public int getPartCount(){return this.nutCount;}
+    
     public int getPartID() {return this.partID;}
 
     public void setPartID(int partID) {this.partID = partID;}
@@ -57,7 +61,7 @@ public class Nut extends Part {
     
     @Override
     public String toString(){
-        StringBuilder sb = new StringBuilder("Nut information:\n");
+        StringBuilder sb = new StringBuilder("Nut information: ");
         sb.append("\tPart Id: ");
         sb.append(this.getPartID());
         sb.append(", Name: ");
