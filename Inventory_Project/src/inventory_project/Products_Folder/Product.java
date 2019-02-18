@@ -60,28 +60,28 @@ public class Product {
     public int getProductID(){return this.productID;}
 
     //TODO: implement Error handling
-    public void addAssociatedPart(Part part){
+    public void addAssociatedPart(Part part) throws Exception{
         this.associatedParts.add(part);
     }
     
     //TODO: implement Error handling
-    public boolean removeAssocatedPart(int partID){
+    public boolean removeAssocatedPart(int partID) throws Exception{
         boolean partRemoved = false;
         
         //Check if ID exists list
-        boolean isPartIDInList = (partID < this.associatedParts.size());
-        
-        //Remove from list
-        if(isPartIDInList){
+//        boolean isPartIDInList = (partID < this.associatedParts.size());
+//        
+//        //Remove from list
+//        if(isPartIDInList){
             this.associatedParts.remove(partID);
             partRemoved = true;
-        }
+//        }
         
         return partRemoved;
     }
     
     ///TODO: implement Error handling
-    public Part lookUpAssociatedPart(int partID){
+    public Part lookUpAssociatedPart(int partID) throws Exception {
         
         Part part = (Part)this.associatedParts.get(partID);
         return part;
@@ -114,12 +114,10 @@ public class Product {
   
         //Iterate Parts List
        Iterator iter = this.associatedParts.iterator();
-       System.out.println("\tProduct Parts: ");
+       System.out.println("   Product Parts:");
         while(iter.hasNext()){
-            System.out.println("\t\t"+iter.next().toString());
-            
+            System.out.println("\t"+iter.next().toString());
         }
-    
         return sb.toString();
     }
       

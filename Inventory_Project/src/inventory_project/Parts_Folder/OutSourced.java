@@ -67,9 +67,11 @@ public class OutSourced extends Part {
     
     @Override
     public String toString(){
-        StringBuilder sb = new StringBuilder("Out sourced part information: ");
+        StringBuilder sb = new StringBuilder("Out sourced part information:\n");
         sb.append("\tPart Id: ");
         sb.append(this.getPartID());
+        sb.append("\tCompany Name: ");
+        sb.append(this.getCompanyName());
         sb.append(", Name: ");
         sb.append(this.getName());
         sb.append(", Price: ");

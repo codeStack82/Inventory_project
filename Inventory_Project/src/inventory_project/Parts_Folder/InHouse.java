@@ -65,9 +65,11 @@ public class InHouse extends Part {
     
     @Override
     public String toString(){
-        StringBuilder sb = new StringBuilder("In House part information: ");
+        StringBuilder sb = new StringBuilder("In House part information:\n");
         sb.append("\tPart Id: ");
         sb.append(this.getPartID());
+         sb.append("\tMachine Id: ");
+        sb.append(this.getMachineID());
         sb.append(", Name: ");
         sb.append(this.getName());
         sb.append(", Price: ");
