@@ -61,30 +61,34 @@ public class Product {
 
     //TODO: implement Error handling
     public void addAssociatedPart(Part part) throws Exception{
-        this.associatedParts.add(part);
+        try{
+            this.associatedParts.add(part);
+        }catch(Exception e){
+            throw new Exception("The part: "+part.getName()+" was not addded to the Product!");
+        }
     }
     
     //TODO: implement Error handling
     public boolean removeAssocatedPart(int partID) throws Exception{
         boolean partRemoved = false;
-        
-        //Check if ID exists list
-//        boolean isPartIDInList = (partID < this.associatedParts.size());
-//        
-//        //Remove from list
-//        if(isPartIDInList){
+        try{
             this.associatedParts.remove(partID);
             partRemoved = true;
-//        }
-        
-        return partRemoved;
+        }catch(Exception e){
+            throw new Exception("Part #: " +partID +" not removed from Product!");
+        }finally{
+            return partRemoved;
+        }
     }
     
     ///TODO: implement Error handling
     public Part lookUpAssociatedPart(int partID) throws Exception {
-        
-        Part part = (Part)this.associatedParts.get(partID);
-        return part;
+        try{
+            Part part = (Part)this.associatedParts.get(partID);
+            return part;
+        }catch(Exception e){
+            throw new Exception("The part: "+partID+" is not available in this product!");
+        }
     }
     
     @Override
