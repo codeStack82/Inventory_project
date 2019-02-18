@@ -19,7 +19,7 @@ public class Inventory {
     
     //TODO: implement
     public void addProduct(Product product){
-    
+        products.add(product);
     }
     
     //TODO: implement

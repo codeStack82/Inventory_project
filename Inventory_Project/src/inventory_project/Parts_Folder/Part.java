@@ -1,3 +1,4 @@
+
 package inventory_project.Parts_Folder;
 
 public abstract class Part {
