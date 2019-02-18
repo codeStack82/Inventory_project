@@ -56,7 +56,7 @@ public class Inventory_Project extends Application {
             boltKit.printPartsInProduct();
             
             //Test -> Add Parts to Product - Print product info - 3 Parts
-            System.out.println("\nAdd Part - Product with 3 parts---------------------");
+            System.out.println("\nAdd Part - Product now with 3 parts---------------------");
             try{
                 boltKit.addAssociatedPart(part3);
                 System.out.println(boltKit.toString());
@@ -66,15 +66,18 @@ public class Inventory_Project extends Application {
             }
             
             //Test -> Remove Part from Product - Print product info - 3->2 Parts
-            System.out.println("\nRemove Part - Product with 3 parts---------------------");
+            System.out.println("\nRemove Part - Product now with 2 parts---------------------");
             int removePartID = 2;
-            try{
-                boltKit.removeAssocatedPart(removePartID);
-                System.out.println(boltKit.toString());
+      
+            boolean wasRemoved = boltKit.removeAssocatedPart(removePartID);
+            
+            if (!wasRemoved){
+                System.out.println("\tPart #: "+removePartID+ " was NOT removed \n");
+            }else{
+                System.out.println("\tPart #: "+removePartID+ " was removed \n"+boltKit.toString());
                 boltKit.printPartsInProduct();
-            }catch(Exception e){
-                 System.out.print("\tPart number: "+ removePartID + " -> not available in this product!\n");
             }
+           
             
             //Test -> Lookup Part from Product - Print product info - 2 Parts
             System.out.println("\nLooked up Part - Product with 3 parts---------------------");

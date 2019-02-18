@@ -60,34 +60,31 @@ public class Product {
     public int getProductID(){return this.productID;}
 
     //TODO: implement Error handling
-    public void addAssociatedPart(Part part) throws Exception{
+    public void addAssociatedPart(Part part) throws IndexOutOfBoundsException{
         try{
             this.associatedParts.add(part);
         }catch(Exception e){
-            throw new Exception("The part: "+part.getName()+" was not addded to the Product!");
+            throw new IndexOutOfBoundsException("The part: "+part.getName()+" was not addded to the Product!");
         }
     }
     
     //TODO: implement Error handling
-    public boolean removeAssocatedPart(int partID) throws Exception{
-        boolean partRemoved = false;
+    public boolean removeAssocatedPart(int partID) {        
         try{
             this.associatedParts.remove(partID);
-            partRemoved = true;
-        }catch(Exception e){
-            throw new Exception("Part #: " +partID +" not removed from Product!");
-        }finally{
-            return partRemoved;
+            return true;
+        }catch(IndexOutOfBoundsException e){
+            return false;
         }
     }
     
     ///TODO: implement Error handling
-    public Part lookUpAssociatedPart(int partID) throws Exception {
+    public Part lookUpAssociatedPart(int partID) throws IndexOutOfBoundsException {
         try{
             Part part = (Part)this.associatedParts.get(partID);
             return part;
-        }catch(Exception e){
-            throw new Exception("The part: "+partID+" is not available in this product!");
+        }catch(IndexOutOfBoundsException e){
+            throw new IndexOutOfBoundsException("The part: "+partID+" is not available in this product!");
         }
     }
     
