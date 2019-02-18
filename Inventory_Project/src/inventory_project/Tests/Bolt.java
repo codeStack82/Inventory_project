@@ -1,11 +1,12 @@
-package inventory_project.Parts_Folder;
-import inventory_project.Parts_Folder.Part;
-import java.lang.StringBuilder;
-/**
- *
- * @author Ty
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
  */
-public class Ereaser {
+package inventory_project.Tests;
+import java.lang.StringBuilder;
+
+public class Bolt {
     
     //Class Variables
     private int partID;
@@ -14,21 +15,21 @@ public class Ereaser {
     private boolean inStock;
     private int min;
     private int max;
-    private static int ereaserCount = 0;
-   
+    private static int boltCount = 0;
+    
     //Constructor(s)
-    public Ereaser(int partID, String name, double price, boolean inStock, int min, int max) {
+    public Bolt(int partID, String name, double price, boolean inStock, int min, int max) {
         this.partID = partID;
         this.name = name;
         this.price = price;
         this.inStock = inStock;
         this.min = min;
         this.max = max;
-        this.ereaserCount += 1;
+        this.boltCount += 1;
     }
     
     //Getters and Setters
-    public int getPartCount(){return this.ereaserCount;}
+    public int getPartCount(){return this.boltCount;}
     
     public int getPartID() {return this.partID;}
 
@@ -56,7 +57,7 @@ public class Ereaser {
     
     @Override
     public String toString(){
-        StringBuilder sb = new StringBuilder("Ereaser information: ");
+        StringBuilder sb = new StringBuilder("Bolt information: ");
         sb.append("\tPart Id: ");
         sb.append(this.getPartID());
         sb.append(", Name: ");
@@ -73,6 +74,5 @@ public class Ereaser {
         return sb.toString();
   
     }
-    
     
 }

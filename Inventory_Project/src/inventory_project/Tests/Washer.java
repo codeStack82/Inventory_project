@@ -1,16 +1,11 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package inventory_project.Parts_Folder;
+package inventory_project.Tests;
 import inventory_project.Parts_Folder.Part;
 import java.lang.StringBuilder;
 /**
  *
  * @author Ty
  */
-public class Nut extends Part {
+public class Washer extends Part {
      
     //Class Variables
     private int partID;
@@ -19,21 +14,21 @@ public class Nut extends Part {
     private boolean inStock;
     private int min;
     private int max;
-    private static int nutCount = 0;
-    
+    private static int washerCount = 0;
+
     //Constructor(s)
-    public Nut(int partID, String name, double price, boolean inStock, int min, int max) {
+    public Washer(int partID, String name, double price, boolean inStock, int min, int max) {
         this.partID = partID;
         this.name = name;
         this.price = price;
         this.inStock = inStock;
         this.min = min;
         this.max = max;
-        this.nutCount += 1;
+        this.washerCount += 1;
     }
     
     //Getters and Setters
-    public int getPartCount(){return this.nutCount;}
+    public int getPartCount(){return this.washerCount;}
     
     public int getPartID() {return this.partID;}
 
@@ -61,7 +56,7 @@ public class Nut extends Part {
     
     @Override
     public String toString(){
-        StringBuilder sb = new StringBuilder("Nut information: ");
+        StringBuilder sb = new StringBuilder("Washer information: ");
         sb.append("\tPart Id: ");
         sb.append(this.getPartID());
         sb.append(", Name: ");

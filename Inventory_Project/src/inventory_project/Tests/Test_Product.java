@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package inventory_project.Tests;
+import inventory_project.Parts_Folder.Part;
 import inventory_project.Parts_Folder.*;
 import inventory_project.Products_Folder.*;
 import java.util.ArrayList;

@@ -13,7 +13,7 @@ import inventory_project.Products_Folder.Product;
  *
  * @author Ty
  */
-public class Inventories {
+public class Inventory {
     ArrayList products = new ArrayList<Product>();
     ArrayList allParts = new ArrayList<Part>();
     

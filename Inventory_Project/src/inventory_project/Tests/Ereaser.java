@@ -1,11 +1,10 @@
-package inventory_project.Parts_Folder;
-import inventory_project.Parts_Folder.Part;
+package inventory_project.Tests;
 import java.lang.StringBuilder;
 /**
  *
  * @author Ty
  */
-public class Pencil {
+public class Ereaser {
     
     //Class Variables
     private int partID;
@@ -14,21 +13,21 @@ public class Pencil {
     private boolean inStock;
     private int min;
     private int max;
-    private static int pencilCount = 0;
-
+    private static int ereaserCount = 0;
+   
     //Constructor(s)
-    public Pencil(int partID, String name, double price, boolean inStock, int min, int max) {
+    public Ereaser(int partID, String name, double price, boolean inStock, int min, int max) {
         this.partID = partID;
         this.name = name;
         this.price = price;
         this.inStock = inStock;
         this.min = min;
         this.max = max;
-        this.pencilCount += 1;
+        this.ereaserCount += 1;
     }
     
     //Getters and Setters
-    public int getPartCount(){return this.pencilCount;}
+    public int getPartCount(){return this.ereaserCount;}
     
     public int getPartID() {return this.partID;}
 
@@ -56,7 +55,7 @@ public class Pencil {
     
     @Override
     public String toString(){
-        StringBuilder sb = new StringBuilder("Pencil information: ");
+        StringBuilder sb = new StringBuilder("Ereaser information: ");
         sb.append("\tPart Id: ");
         sb.append(this.getPartID());
         sb.append(", Name: ");
@@ -73,5 +72,6 @@ public class Pencil {
         return sb.toString();
   
     }
-      
+    
+    
 }

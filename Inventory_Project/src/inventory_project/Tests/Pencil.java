@@ -1,12 +1,11 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package inventory_project.Parts_Folder;
+package inventory_project.Tests;
+import inventory_project.Parts_Folder.Part;
 import java.lang.StringBuilder;
-
-public class Bolt {
+/**
+ *
+ * @author Ty
+ */
+public class Pencil {
     
     //Class Variables
     private int partID;
@@ -15,21 +14,21 @@ public class Bolt {
     private boolean inStock;
     private int min;
     private int max;
-    private static int boltCount = 0;
-    
+    private static int pencilCount = 0;
+
     //Constructor(s)
-    public Bolt(int partID, String name, double price, boolean inStock, int min, int max) {
+    public Pencil(int partID, String name, double price, boolean inStock, int min, int max) {
         this.partID = partID;
         this.name = name;
         this.price = price;
         this.inStock = inStock;
         this.min = min;
         this.max = max;
-        this.boltCount += 1;
+        this.pencilCount += 1;
     }
     
     //Getters and Setters
-    public int getPartCount(){return this.boltCount;}
+    public int getPartCount(){return this.pencilCount;}
     
     public int getPartID() {return this.partID;}
 
@@ -57,7 +56,7 @@ public class Bolt {
     
     @Override
     public String toString(){
-        StringBuilder sb = new StringBuilder("Bolt information: ");
+        StringBuilder sb = new StringBuilder("Pencil information: ");
         sb.append("\tPart Id: ");
         sb.append(this.getPartID());
         sb.append(", Name: ");
@@ -74,5 +73,5 @@ public class Bolt {
         return sb.toString();
   
     }
-    
+      
 }
