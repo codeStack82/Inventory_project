@@ -5,12 +5,21 @@
  */
 package inventory_project;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
+import javafx.scene.control.ToggleGroup;
+import javafx.stage.Stage;
 
 /**
  * FXML Controller class
@@ -22,11 +31,10 @@ public class FXMLAddPartController implements Initializable {
     /**
      * Initializes the controller class.
      */
-//    
-//    @FXML private RadioButton inHouseRadioButton;
-//    @FXML private RadioButton OutSourcedRadioButton;
-//    
-//    @FXML private ButtonGroup = new ButtonGroup<>();
+    
+    @FXML private RadioButton inHouseRadioButton;
+    @FXML private RadioButton outSourcedRadioButton;  
+    private ToggleGroup partTypeToggleGroup;
     
     @FXML private TextField idTextfield;
     @FXML private TextField nameTextfield;
@@ -36,23 +44,60 @@ public class FXMLAddPartController implements Initializable {
     @FXML private TextField minTextfield;
     @FXML private TextField companyTextfield;
     
-    @FXML private Button addPartButton;
+    @FXML private Button savePartButton;
     @FXML private Button cancelPartButton;
  
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        //Toggle Group for radio buttons
+        partTypeToggleGroup =  new ToggleGroup();
+        this.inHouseRadioButton.setToggleGroup(partTypeToggleGroup);
+        this.outSourcedRadioButton.setToggleGroup(partTypeToggleGroup);
+        
     }    
     
-    public void addButtonClicked(){
+    /**
+     * @info: Add Part - save button event
+     * @param event
+     * @throws IOException
+     */
+    public void savePartButtonClicked(ActionEvent event) throws IOException{
         //TODO: Implement
-        System.out.println("Add button blicked");
+        System.out.println("Add Part - Save button clicked");
+        
+        //Switch back to the main tab pane
+        changeTo_mainTabViewView(event);
     }
     
-      public void cancelButtonClicked(){
+    /**
+     * @info: Add Part - Cancel button event
+     * @param event
+     * @throws IOException
+     */
+    public void cancelPartButtonClicked(ActionEvent event) throws IOException{
         //TODO: Implement
-        System.out.println("Cancel button blicked");
+        System.out.println("Add Part - Cancel button clicked");
+        
+        //Switch back to the main tab pane
+        changeTo_mainTabViewView(event);
     }
+      
+    /**
+     * @info: Helper method Switches the scene back to the main Tab Pane view
+     * @param event
+     * @throws IOException
+     */
+    public void changeTo_mainTabViewView(ActionEvent event) throws IOException{
+        // TODO: Need to get part number to modify
+        
+        Parent addPart = FXMLLoader.load(getClass().getResource("FXMLMainTabPane.fxml"));
+        Scene addPartScene = new Scene(addPart);
+        
+        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+        window.setScene(addPartScene);
+        window.show();
+    
+    }  
     
 }

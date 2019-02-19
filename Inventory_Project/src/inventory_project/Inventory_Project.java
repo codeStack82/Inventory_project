@@ -5,11 +5,11 @@
  */
 package inventory_project;
 
-import inventory_project.Parts_Folder.InHouse;
-import inventory_project.Parts_Folder.OutSourced;
-import inventory_project.Parts_Folder.Part;
-import inventory_project.Products_Folder.Product;
-import java.util.ArrayList;
+//import inventory_project.Parts_Folder.InHouse;
+//import inventory_project.Parts_Folder.OutSourced;
+//import inventory_project.Parts_Folder.Part;
+//import inventory_project.Products_Folder.Product;
+//import java.util.ArrayList;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;

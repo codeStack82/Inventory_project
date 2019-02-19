@@ -5,9 +5,18 @@
  */
 package inventory_project;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.stage.Stage;
 
 /**
  * FXML Controller class
@@ -19,9 +28,57 @@ public class FXMLAddProductController implements Initializable {
     /**
      * Initializes the controller class.
      */
+    @FXML private Button saveAddProductButton;
+    @FXML private Button cancelAddProductButton;
+    
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }    
+    
+     /**
+     * @info: Product - Add button clicked
+     * @param event
+     * @throws IOException
+     */
+    public void saveAddProductButtonClicked(ActionEvent event) throws IOException{
+        //TODO: Implement
+        System.out.println("Add Product - Save button clicked");
+        
+        //Switch back to the main tab pane
+        changeTo_mainTabViewView(event);
+    }
+    
+     /**
+     * @info: Product - Cancel button clicked
+     * @param event
+     * @throws IOException
+     */
+    public void cancelAddProductButtonClicked(ActionEvent event) throws IOException{
+        //TODO: Implement
+        System.out.println("Add Product - Cancel button clicked");
+        
+        //Switch back to the main tab pane
+        changeTo_mainTabViewView(event);
+    }
+      
+    /**
+     * @info: Helper method Switches the scene back to the main Tab Pane view
+     * @param event
+     * @throws IOException
+     */
+    public void changeTo_mainTabViewView(ActionEvent event) throws IOException{
+        // TODO: Need to get part number to modify
+        
+        Parent addPart = FXMLLoader.load(getClass().getResource("FXMLMainTabPane.fxml"));
+        Scene addPartScene = new Scene(addPart);
+        
+        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+        window.setScene(addPartScene);
+        window.show();
+    
+    }  
+    
     
 }

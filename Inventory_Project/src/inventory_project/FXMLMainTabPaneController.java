@@ -54,7 +54,35 @@ public class FXMLMainTabPaneController implements Initializable {
     }   
     
     /**
-     *
+     * @info: Search Part button clicked
+     * @param void
+     */
+    public void searchPartButtonClicked(){
+    
+        String searchPartText = searchPartsTextfield.getText();
+        searchPartsTextfield.setText("");
+        
+        //TODO: implement search part logic
+        
+        System.out.println("Search Text: "+ searchPartText);
+    }
+    
+     /**
+     * @info: Search Product button clicked
+     * @param void
+     */
+    public void searchProductButtonClicked(){
+    
+        String searchProductText = searchProductTextfield.getText();
+        searchProductTextfield.setText("");
+        
+        //TODO: implement search part logic
+        
+        System.out.println("Search Text: "+ searchProductText);
+    }
+    
+    /**
+     * @info: Switches the scene to the Add Part view
      * @param event
      * @throws IOException
      */
@@ -69,9 +97,15 @@ public class FXMLMainTabPaneController implements Initializable {
     
     }
     
-    public void changeTo_addProductView(ActionEvent event) throws IOException{
+     /**
+     * @info: Switches the scene to the Add Part view
+     * @param event
+     * @throws IOException
+     */
+    public void changeTo_modifyPartView(ActionEvent event) throws IOException{
+        // TODO: Need to get part number to modify
         
-        Parent addPart = FXMLLoader.load(getClass().getResource("FXMLModifysPart.fxml"));
+        Parent addPart = FXMLLoader.load(getClass().getResource("FXMLModifyPart.fxml"));
         Scene addPartScene = new Scene(addPart);
         
         Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
@@ -79,4 +113,39 @@ public class FXMLMainTabPaneController implements Initializable {
         window.show();
     
     }
+    
+    
+    /**
+     * @info: Switches the scene to the Add Product view
+     * @param event
+     * @throws IOException
+     */
+    public void changeTo_addProductView(ActionEvent event) throws IOException{
+        
+        Parent addPart = FXMLLoader.load(getClass().getResource("FXMLAddProduct.fxml"));
+        Scene addPartScene = new Scene(addPart);
+        
+        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+        window.setScene(addPartScene);
+        window.show();
+    
+    }
+    
+     /**
+     * @info: Switches the scene to the Add Product view
+     * @param event
+     * @throws IOException
+     */
+    public void changeTo_modifyProductView(ActionEvent event) throws IOException{
+        // TODO: Need to get part number to modify
+        
+        Parent addPart = FXMLLoader.load(getClass().getResource("FXMLModifyProduct.fxml"));
+        Scene addPartScene = new Scene(addPart);
+        
+        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+        window.setScene(addPartScene);
+        window.show();
+    
+    }
+    
 }
