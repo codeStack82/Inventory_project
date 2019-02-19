@@ -68,6 +68,7 @@ public class FXMLMainTabPaneController implements Initializable {
         window.show();
     
     }
+    
     public void changeTo_addProductView(ActionEvent event) throws IOException{
         
         Parent addPart = FXMLLoader.load(getClass().getResource("FXMLModifysPart.fxml"));
