@@ -5,9 +5,17 @@
  */
 package inventory_project;
 
+import inventory_project.Parts_Folder.InHouse;
+import inventory_project.Parts_Folder.OutSourced;
+import inventory_project.Parts_Folder.Part;
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.ResourceBundle;
+import java.util.Set;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -16,8 +24,10 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
 /**
@@ -33,8 +43,14 @@ public class FXMLMainTabPaneController implements Initializable {
     //Parts View
     @FXML private TextField searchPartsTextfield;
     @FXML private Button    searchPartSystemButton; 
-    @FXML private TableView partsTableView;
     
+    //Parts Table View
+    @FXML private TableView<Part> partsTableView;
+    @FXML private TableColumn<Part, String> partIDColumn;
+    @FXML private TableColumn<Part, String> partNameColumn;
+    @FXML private TableColumn<Part, String> partQtyColumn;
+    @FXML private TableColumn<Part, String> partPriceColumn;
+
     @FXML private Button addPartSystemButton;
     @FXML private Button modifyPartSystemButton;
     @FXML private Button deletePartSystemButton;
@@ -50,12 +66,52 @@ public class FXMLMainTabPaneController implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        
+        //Initialize Parts TableView
+        initializePartsTable();
+
     }   
     
     /**
+     * @info: Setup Parts Table View
+     */
+    public void initializePartsTable(){ 
+        //Setup column in table
+        partIDColumn.setCellValueFactory(   new PropertyValueFactory<>("partID"));
+        partNameColumn.setCellValueFactory( new PropertyValueFactory<>("name"));
+        //TODO: Need to get qty in this cell factory
+        partQtyColumn.setCellValueFactory(  new PropertyValueFactory<>("max"));
+        partPriceColumn.setCellValueFactory(new PropertyValueFactory<>("price"));
+        
+        //Load dummy data
+        partsTableView.setItems(getParts());
+    
+    }
+     
+    /**
+     * @info: Populate Parts Table with Observable list
+     * @return ObservableList
+     */
+    public ObservableList<Part> getParts(){
+        
+        ObservableList<Part> partsList = FXCollections.observableArrayList();
+        
+        InHouse smallbolt = new InHouse(1,23, "Small Bolt", 0.55, true, 10, 500);
+        InHouse smallerbolt = new InHouse(2,23, "Smaller Bolt", 0.52, true, 10, 500);
+
+        OutSourced mediumBolt = new OutSourced(3,"Ty\'s Tools Shop", "Medium Bolt", 0.65, true, 10, 500);
+        OutSourced largeBolt = new OutSourced(4,"Ty\'s Tools Shop", "Large Bolt", 0.69, true, 10, 500);
+        
+        partsList.add(smallbolt);
+        partsList.add(smallerbolt);
+        partsList.add(mediumBolt);
+        partsList.add(largeBolt);
+        
+        return partsList;
+    }
+    
+    /**
      * @info: Search Part button clicked
-     * @param void
      */
     public void searchPartButtonClicked(){
     
@@ -69,7 +125,6 @@ public class FXMLMainTabPaneController implements Initializable {
     
      /**
      * @info: Search Product button clicked
-     * @param void
      */
     public void searchProductButtonClicked(){
     
