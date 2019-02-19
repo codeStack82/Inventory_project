@@ -68,7 +68,6 @@ public class Product {
         }
     }
     
-    //TODO: implement Error handling
     public boolean removeAssocatedPart(int partID) {        
         try{
             this.associatedParts.remove(partID);
