@@ -83,7 +83,7 @@ public class Product {
             Part part = (Part)this.associatedParts.get(partID);
             return part;
         }catch(IndexOutOfBoundsException e){
-            throw new IndexOutOfBoundsException("The part: "+partID+" is not available in this product!");
+            throw new IndexOutOfBoundsException("The part: " +partID+ " is not available in this product!");
         }
     }
     

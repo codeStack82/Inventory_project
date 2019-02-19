@@ -41,8 +41,8 @@
                            <children>
                               <HBox alignment="CENTER_LEFT" nodeOrientation="RIGHT_TO_LEFT" prefHeight="38.0" prefWidth="525.0" spacing="10.0">
                                  <children>
-                                    <Button mnemonicParsing="false" text=" Search" textFill="#333336" />
-                                    <TextField prefHeight="27.0" prefWidth="182.0" promptText="Parts Search" />
+                                    <Button fx:id="searchPartSystemButton" mnemonicParsing="false" text=" Search" textFill="#333336" />
+                                    <TextField fx:id="searchPartsTextfield" prefHeight="27.0" prefWidth="182.0" promptText="Parts Search" />
                                  </children>
                                  <padding>
                                     <Insets right="10.0" />
@@ -53,7 +53,7 @@
                               </HBox>
                               <HBox prefHeight="254.0" prefWidth="525.0" VBox.vgrow="ALWAYS">
                                  <children>
-                                    <TableView prefHeight="244.0" prefWidth="583.0">
+                                    <TableView fx:id="partsTableView" prefHeight="244.0" prefWidth="583.0">
                                       <columns>
                                         <TableColumn prefWidth="94.0" text="Part ID" />
                                         <TableColumn prefWidth="280.0" text="Part Name" />
@@ -68,17 +68,17 @@
                               </HBox>
                               <HBox nodeOrientation="RIGHT_TO_LEFT" prefHeight="44.0" prefWidth="590.0">
                                  <children>
-                                    <Button mnemonicParsing="false" prefHeight="27.0" prefWidth="75.0" text="Delete" textFill="#333336">
+                                    <Button fx:id="deletePartSystemButton" mnemonicParsing="false" prefHeight="27.0" prefWidth="75.0" text="Delete" textFill="#333336">
                                        <HBox.margin>
                                           <Insets left="10.0" right="10.0" />
                                        </HBox.margin>
                                     </Button>
-                                    <Button mnemonicParsing="false" prefHeight="27.0" prefWidth="75.0" text="Modify" textFill="#333336">
+                                    <Button fx:id="modifyPartSystemButton" mnemonicParsing="false" prefHeight="27.0" prefWidth="75.0" text="Modify" textFill="#333336">
                                        <HBox.margin>
                                           <Insets left="10.0" right="10.0" />
                                        </HBox.margin>
                                     </Button>
-                                    <Button mnemonicParsing="false" prefHeight="27.0" prefWidth="74.0" text="Add" textFill="#333336">
+                                    <Button fx:id="addPartSystemButton" mnemonicParsing="false" onAction="#changeTo_addPartView" prefHeight="27.0" prefWidth="74.0" text="Add" textFill="#333336">
                                        <HBox.margin>
                                           <Insets left="10.0" right="10.0" />
                                        </HBox.margin>
@@ -107,8 +107,8 @@
                                  <children>
                                     <HBox alignment="CENTER_LEFT" nodeOrientation="RIGHT_TO_LEFT" prefHeight="38.0" prefWidth="525.0" spacing="10.0">
                                        <children>
-                                          <Button mnemonicParsing="false" text=" Search" textFill="#333336" />
-                                          <TextField prefHeight="27.0" prefWidth="182.0" promptText="Porduct Search" />
+                                          <Button fx:id="searchProductSystemButton" mnemonicParsing="false" text=" Search" textFill="#333336" />
+                                          <TextField fx:id="searchProductTextfield" prefHeight="27.0" prefWidth="182.0" promptText="Porduct Search" />
                                        </children>
                                        <padding>
                                           <Insets right="10.0" />
@@ -119,7 +119,7 @@
                                     </HBox>
                                     <HBox prefHeight="244.0" prefWidth="596.0" VBox.vgrow="ALWAYS">
                                        <children>
-                                          <TableView prefHeight="237.0" prefWidth="578.0">
+                                          <TableView fx:id="ProductTableView" prefHeight="237.0" prefWidth="578.0">
                                              <columns>
                                                 <TableColumn prefWidth="109.0" text="Product ID" />
                                                 <TableColumn prefWidth="241.0" text="Product Name" />
@@ -134,17 +134,17 @@
                                     </HBox>
                                     <HBox nodeOrientation="RIGHT_TO_LEFT" prefHeight="44.0" prefWidth="590.0">
                                        <children>
-                                          <Button mnemonicParsing="false" prefHeight="27.0" prefWidth="75.0" text="Delete" textFill="#333336">
+                                          <Button fx:id="deleteProductSystemButton" mnemonicParsing="false" prefHeight="27.0" prefWidth="75.0" text="Delete" textFill="#333336">
                                              <HBox.margin>
                                                 <Insets left="10.0" right="10.0" />
                                              </HBox.margin>
                                           </Button>
-                                          <Button mnemonicParsing="false" prefHeight="27.0" prefWidth="75.0" text="Modify" textFill="#333336">
+                                          <Button fx:id="modifyProductystemButton" mnemonicParsing="false" prefHeight="27.0" prefWidth="75.0" text="Modify" textFill="#333336">
                                              <HBox.margin>
                                                 <Insets left="10.0" right="10.0" />
                                              </HBox.margin>
                                           </Button>
-                                          <Button mnemonicParsing="false" prefHeight="27.0" prefWidth="74.0" text="Add" textFill="#333336">
+                                          <Button fx:id="addProductSystemButton" mnemonicParsing="false" prefHeight="27.0" prefWidth="74.0" text="Add" textFill="#333336">
                                              <HBox.margin>
                                                 <Insets left="10.0" right="10.0" />
                                              </HBox.margin>
