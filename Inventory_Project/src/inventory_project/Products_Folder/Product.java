@@ -9,7 +9,7 @@ public class Product {
     //Class Variables
     private ArrayList associatedParts = new ArrayList<Part>();
     private int productID;
-    private String name; //
+    private String name; 
     private double price;
     private boolean inStock;
     private int min;
