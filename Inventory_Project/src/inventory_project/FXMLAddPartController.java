@@ -8,6 +8,7 @@ package inventory_project;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -90,14 +91,18 @@ public class FXMLAddPartController implements Initializable {
      */
     public void changeTo_mainTabViewView(ActionEvent event) throws IOException{
         // TODO: Need to get part number to modify
-        
-        Parent addPart = FXMLLoader.load(getClass().getResource("FXMLMainTabPane.fxml"));
-        Scene addPartScene = new Scene(addPart);
-        
-        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
-        window.setScene(addPartScene);
-        window.show();
+        try{
+            Parent root = FXMLLoader.load(getClass().getResource("FXMLMainTabPane.fxml"));
+            Scene rootView = new Scene(root);
+
+            Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+            window.setScene(rootView);
+            window.show();
+        }catch(IOException e){
+            System.out.println("In Add Part - Can't load Main Tab window?");
+        }
     
     }  
+
     
 }
