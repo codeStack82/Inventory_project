@@ -130,12 +130,13 @@ public class FXMLAddPartController implements Initializable {
     
     /**
      * @info:   Add Part - Create a new Part
-     * @param:  ArrayList -> Validated Add Part form values
+     * @param:  formValues ArrayList -> Validated Add Part form values
      */
     public void createPart(ArrayList<String> formValues){
-       
+        
         //If part types are valid
-        if(areObjectTypesValid(formValues)){
+        boolean isValid = areObjectTypesValid(formValues);
+        if(isValid){
             
             try{
                 String partSourceType = formValues.get(0);
@@ -147,7 +148,7 @@ public class FXMLAddPartController implements Initializable {
                 int partMin = Integer.parseInt(formValues.get(6));
                 String companyName = formValues.get(7);
                 int machineID = Integer.parseInt(formValues.get(8));
-
+                
                 if("InHouse".equals(partSourceType)){
                     InHouse part = new InHouse(partID, machineID, partName, partPrice, partQty , partMin, partMax);
                     
@@ -158,7 +159,7 @@ public class FXMLAddPartController implements Initializable {
                     
                     OutSourced part = new OutSourced(partID, companyName, partName, partPrice, partQty, partMin, partMax);
                     //TODO: Add part to inventory
-                    //System.out.println(part.toString());
+                    System.out.println(part.toString());
                 }
             }catch(NumberFormatException e){
                 this.errorMsg.setText("Error: # frmt Please try again...");
@@ -176,31 +177,19 @@ public class FXMLAddPartController implements Initializable {
      * @return: boolean
      */
     public boolean areObjectTypesValid(ArrayList<String> formValues){
+        
             boolean isValid = false;
-            //TODO: Could refactor to place all items in an Array List then return list
             try{
-                if(formValues.get(0).equals("InHouse")){ 
-                   int partId = Integer.parseInt(formValues.get(1));
-                   int partQty = Integer.parseInt(formValues.get(3));
-                   double partPrice = Double.parseDouble(formValues.get(4));
-                   int partMax = Integer.parseInt(formValues.get(5));
-                   int partMin = Integer.parseInt(formValues.get(6));
-                   int machineID = Integer.parseInt(formValues.get(8));
-                   
-                   isValid = true;
-                   System.out.println(formValues.get(0)+ " object valid: "+ isValid);
-                   
-                }else if (formValues.get(0).equals("OutSourced")){
-                    int partId = Integer.parseInt(formValues.get(1));
-                    int partQty = Integer.parseInt(formValues.get(3));
-                    double partPrice = Double.parseDouble(formValues.get(4));
-                    int partMax = Integer.parseInt(formValues.get(5));
-                    int partMin = Integer.parseInt(formValues.get(6));
-                    
-                    isValid = true;
-                    System.out.println(formValues.get(0)+ " object valid: "+ isValid);
-                }
-                
+                Integer.parseInt(formValues.get(1));
+                Integer.parseInt(formValues.get(3));
+                Double.parseDouble(formValues.get(4));
+                Integer.parseInt(formValues.get(5));
+                Integer.parseInt(formValues.get(6));
+                Integer.parseInt(formValues.get(8));
+
+                isValid = true;
+                System.out.println(formValues.get(0)+ " object valid: "+ isValid);
+
             }catch(NumberFormatException e){
                 System.out.println("Number exception-> Is " +formValues.get(0)+ " object valid: "+ isValid);
                 resetToDefault();
