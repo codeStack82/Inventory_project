@@ -16,14 +16,14 @@ public class OutSourced extends Part {
     private String companyName;
     private String name;
     private double price;
-    private boolean inStock;
+    private int inStock;
     private int min;
     private int max;
     private static int outSourcedPartCount = 0;
     
     
     //Constructor(s)
-    public OutSourced(int partID, String companyName, String name, double price, boolean inStock, int min, int max) {
+    public OutSourced(int partID, String companyName, String name, double price, int inStock, int min, int max) {
         this.partID = partID;
         this.companyName = companyName;
         this.name = name;
@@ -51,9 +51,9 @@ public class OutSourced extends Part {
 
     public void setPrice(double price) {this.price = price;}
 
-    public boolean getInStock() {return this.inStock;}
+    public int getInStock() {return this.inStock;}
 
-    public void setInStock(boolean inStock) {this.inStock = inStock;}
+    public void setInStock(int inStock) {this.inStock = inStock;}
 
     public int getMin() {return this.min;}
 

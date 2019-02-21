@@ -15,13 +15,13 @@ public class InHouse extends Part {
     private int partID;
     private String name;
     private double price;
-    private boolean inStock;
+    private int inStock;
     private int min;
     private int max;
     private static int inHousePartCount = 0;
     
     //Constructor(s)
-    public InHouse(int partID, int machineID, String name, double price, boolean inStock, int min, int max) {
+    public InHouse(int partID, int machineID, String name, double price, int inStock, int min, int max) {
         this.partID = partID;
         this.machineID = machineID;
         this.name = name;
@@ -49,9 +49,9 @@ public class InHouse extends Part {
 
     public void setPrice(double price) {this.price = price;}
 
-    public boolean getInStock() {return this.inStock;}
+    public int getInStock() {return this.inStock;}
 
-    public void setInStock(boolean inStock) {this.inStock = inStock;}
+    public void setInStock(int inStock) {this.inStock = inStock;}
 
     public int getMin() {return this.min;}
 

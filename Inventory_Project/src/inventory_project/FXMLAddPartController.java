@@ -31,6 +31,7 @@ import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Toggle;
 import javafx.scene.control.ToggleGroup;
+import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 
 /**
@@ -55,11 +56,8 @@ public class FXMLAddPartController implements Initializable {
     @FXML private TextField maxTextfield;
     @FXML private TextField minTextfield;
     @FXML private TextField companyTextfield;
+    @FXML private TextField machineIDTextfield;
     @FXML private Label errorMsg;
-    
-    @FXML private Button savePartButton;
-    @FXML private Button cancelPartButton;    
-    @FXML private Button resetButton;    
     private String sourceType;
     
     @Override
@@ -69,31 +67,40 @@ public class FXMLAddPartController implements Initializable {
         sourceType ="InHouse";
         
         //Toggle Group for radio buttons
-        partTypeToggleGroup =  new ToggleGroup();
+        this.partTypeToggleGroup =  new ToggleGroup();
         this.inHouseRadioButton.setToggleGroup(partTypeToggleGroup);
         this.outSourcedRadioButton.setToggleGroup(partTypeToggleGroup);
         
+        this.machineIDTextfield.setDisable(false);
+        this.companyTextfield.setDisable(true);
+        
        // Radio Button Event Listeners
-       //OutSourced Radio Button - Event Listener lambda 
+       //OutSourced Radio Button - Lambda Event Listener 
        inHouseRadioButton.selectedProperty().addListener((ObservableValue<? extends Boolean> obs, Boolean wasPreviouslySelected, Boolean isNowSelected) -> {
            if (isNowSelected) {
                //System.out.println("In House selected: "+isNowSelected);
                companyTextfield.setDisable(isNowSelected);
+               machineIDTextfield.setDisable(!isNowSelected);
                companyTextfield.setText("");
                sourceType = "InHouse";
            }
         });
        
-       //OutSourced Radio Button - Event Listener lambda
+       //OutSourced Radio Button - Lambda Event Listener 
        outSourcedRadioButton.selectedProperty().addListener((ObservableValue<? extends Boolean> obs, Boolean wasPreviouslySelected, Boolean isNowSelected) -> {
            if (isNowSelected) {
                //System.out.println("Outsourced is selected: "+ isNowSelected);
                companyTextfield.setDisable(!isNowSelected);
+               machineIDTextfield.setDisable(isNowSelected);
                sourceType = "OutSourced";
            }
         });
     }    
     
+    /**
+     * @info:   Add Part Form - Gets the Add Part form values
+     * @return: ArrayList String
+     */
     public ArrayList<String> getFormValues(){
         
         ArrayList<String> formValues = new ArrayList<>();
@@ -105,37 +112,72 @@ public class FXMLAddPartController implements Initializable {
         String partPrice        = priceTextfield.getText();
         String partMax          = maxTextfield.getText();
         String partMin          = minTextfield.getText();
-        String companyName      = companyTextfield.getText(); 
+        String companyName      = companyTextfield.getText();
+        String machineID        = machineIDTextfield.getText(); 
         
-        formValues.add(partSourceType);
-        formValues.add(partID);
-        formValues.add(partName);
-        formValues.add(partQty);
-        formValues.add(partPrice);
-        formValues.add(partMax);
-        formValues.add(partMin);
-        formValues.add(companyName);
+        formValues.add(partSourceType); //0
+        formValues.add(partID);         //1
+        formValues.add(partName);       //2
+        formValues.add(partQty);        //3
+        formValues.add(partPrice);      //4
+        formValues.add(partMax);        //5
+        formValues.add(partMin);        //6
+        formValues.add(companyName);    //7
+        formValues.add(machineID);      //8
     
         return formValues;
     }
     
-    public void validateFormValues(ArrayList<String> formValues){
+    /**
+     * @info:   Add Part - Create a new Part
+     * @param:  ArrayList -> Validated Add Part form values
+     */
+    public void createPart(ArrayList<String> formValues){
        
-      
-        if(isInHouseObjectValid(formValues)){
-            //create inhouse obj
-        }
-        
-        if(isOutSourcedObjectValid(formValues)){
-            //create outsourced obj
-        }
-       
+        //If part types are valid
+        if(areObjectTypesValid(formValues)){
+            
+            try{
+                String partSourceType = formValues.get(0);
+                int partID = Integer.parseInt(formValues.get(1));
+                String partName = formValues.get(2);
+                int partQty = Integer.parseInt(formValues.get(3));
+                double partPrice = Double.parseDouble(formValues.get(4));
+                int partMax = Integer.parseInt(formValues.get(5));
+                int partMin = Integer.parseInt(formValues.get(6));
+                String companyName = formValues.get(7);
+                int machineID = Integer.parseInt(formValues.get(8));
 
+                if("InHouse".equals(partSourceType)){
+                    InHouse part = new InHouse(partID, machineID, partName, partPrice, partQty , partMin, partMax);
+                    
+                    //TODO: Add part to inventory
+                    System.out.println(part.toString());
+                }
+                if("OutSourced".equals(partSourceType)){
+                    
+                    OutSourced part = new OutSourced(partID, companyName, partName, partPrice, partQty, partMin, partMax);
+                    //TODO: Add part to inventory
+                    //System.out.println(part.toString());
+                }
+            }catch(NumberFormatException e){
+                this.errorMsg.setText("Error: # frmt Please try again...");
+            }catch(Exception e){
+                this.errorMsg.setText("Error: Please try again...");
+            }
+
+        }
     }
     
-    public boolean isInHouseObjectValid(ArrayList<String> formValues){
+    /**
+     * @info:   Add Part - Tests to validate the fields in the
+     *          form are valid
+     * @param:  ArrayList -> Add Part form values
+     * @return: boolean
+     */
+    public boolean areObjectTypesValid(ArrayList<String> formValues){
             boolean isValid = false;
-            
+            //TODO: Could refactor to place all items in an Array List then return list
             try{
                 if(formValues.get(0).equals("InHouse")){ 
                    int partId = Integer.parseInt(formValues.get(1));
@@ -143,68 +185,34 @@ public class FXMLAddPartController implements Initializable {
                    double partPrice = Double.parseDouble(formValues.get(4));
                    int partMax = Integer.parseInt(formValues.get(5));
                    int partMin = Integer.parseInt(formValues.get(6));
+                   int machineID = Integer.parseInt(formValues.get(8));
+                   
                    isValid = true;
-                   System.out.println("isInHouseObjectValid: "+ isValid);
+                   System.out.println(formValues.get(0)+ " object valid: "+ isValid);
+                   
+                }else if (formValues.get(0).equals("OutSourced")){
+                    int partId = Integer.parseInt(formValues.get(1));
+                    int partQty = Integer.parseInt(formValues.get(3));
+                    double partPrice = Double.parseDouble(formValues.get(4));
+                    int partMax = Integer.parseInt(formValues.get(5));
+                    int partMin = Integer.parseInt(formValues.get(6));
+                    
+                    isValid = true;
+                    System.out.println(formValues.get(0)+ " object valid: "+ isValid);
                 }
                 
             }catch(NumberFormatException e){
-                System.out.println("Number exception-> isInHouseObjectValid: "+ isValid);
+                System.out.println("Number exception-> Is " +formValues.get(0)+ " object valid: "+ isValid);
                 resetToDefault();
             }catch(Exception e){
-                System.out.println("General Exception->i sInHouseObjectValid: "+ isValid);
+                System.out.println("General Exception-> Is" +formValues.get(0)+ " object valid: "+ isValid);
                 resetToDefault();
             }
         
         return isValid;
     }
     
-    public boolean isOutSourcedObjectValid(ArrayList<String> formValues){
-         boolean isValid = false;
-            
-            try{
-                if(formValues.get(0).equals("OutSourced")){
-                    
-                }
-                
-            }catch(Exception e){
-                
-            }
-           
-        
-        return isValid;
-    }
-    
-
-    //Needs cleaning up 
-    public void createPart()  {
-        //TODO: Machine id and instock implementation?????
-        try{
-            
-            String partSourceType = sourceType;
-            int partID = Integer.parseInt(idTextfield.getText());
-            String partName = nameTextfield.getText();
-            int partQty = Integer.parseInt(qtyTextfield.getText());
-            double partPrice = Double.parseDouble(priceTextfield.getText());
-            int partMax = Integer.parseInt(maxTextfield.getText());
-            int partMin = Integer.parseInt(minTextfield.getText());
-            String companyName = companyTextfield.getText();
-
-            if("InHouse".equals(partSourceType)){
-                InHouse part = new InHouse(partID, 4567 , partName, partPrice, true , partMax, partMin);
-                System.out.println(part.toString());
-            }
-            if("OutSourced".equals(partSourceType)){
-                OutSourced part = new OutSourced(partID, companyName, partName, partPrice,true, partMax, partMin);
-                System.out.println(part.toString());
-            }
-        }catch(NumberFormatException e){
-            this.errorMsg.setText("Error: # frmt Please try again...");
-        }catch(Exception e){
-            this.errorMsg.setText("Error: Please try again...");
-        }
-    }
-    
-     /**
+    /**
      * @info: Add Part - reset form values to default
      */
     public void resetToDefault(){
@@ -217,6 +225,9 @@ public class FXMLAddPartController implements Initializable {
         this.companyTextfield.setText("");
         this.inHouseRadioButton.setSelected(true);
         this.companyTextfield.setDisable(true);
+        this.companyTextfield.setText("");
+        this.machineIDTextfield.setText("");
+        this.machineIDTextfield.setDisable(false);
 //        this.errorMsg.setText("");
         
     }
@@ -232,11 +243,10 @@ public class FXMLAddPartController implements Initializable {
         
         //Get Form Values
         ArrayList<String> formValues = getFormValues();
-        isInHouseObjectValid(formValues);
-        
+        createPart(formValues);
         
         //Switch back to the main tab pane
-//        changeTo_mainTabViewView(event);
+        changeTo_mainTabViewView(event);
     }
     
     /**
@@ -272,5 +282,4 @@ public class FXMLAddPartController implements Initializable {
     
     }  
 
-    
 }

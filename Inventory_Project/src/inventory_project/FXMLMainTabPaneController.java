@@ -81,7 +81,7 @@ public class FXMLMainTabPaneController implements Initializable {
      */
     public void initializePartsTable(){ 
         //Setup column in table
-        partIDColumn.setCellValueFactory(   new PropertyValueFactory<>("partID"));
+        partIDColumn.setCellValueFactory( new PropertyValueFactory<>("partID"));
         partNameColumn.setCellValueFactory( new PropertyValueFactory<>("name"));
         //TODO: Need to get qty in this cell factory
         partQtyColumn.setCellValueFactory(  new PropertyValueFactory<>("max"));
@@ -100,11 +100,11 @@ public class FXMLMainTabPaneController implements Initializable {
         
         ObservableList<Part> partsList = FXCollections.observableArrayList();
         
-        InHouse smallbolt = new InHouse(1,23, "Small Bolt", 0.55, true, 10, 500);
-        InHouse smallerbolt = new InHouse(2,23, "Smaller Bolt", 0.52, true, 10, 500);
+        InHouse smallbolt = new InHouse(1,23, "Small Bolt", 0.55, 4, 10, 500);
+        InHouse smallerbolt = new InHouse(2,23, "Smaller Bolt", 0.52, 4, 10, 500);
 
-        OutSourced mediumBolt = new OutSourced(3,"Ty\'s Tools Shop", "Medium Bolt", 0.65, true, 10, 500);
-        OutSourced largeBolt = new OutSourced(4,"Ty\'s Tools Shop", "Large Bolt", 0.69, true, 10, 500);
+        OutSourced mediumBolt = new OutSourced(3,"Ty\'s Tools Shop", "Medium Bolt", 0.65, 4, 10, 500);
+        OutSourced largeBolt = new OutSourced(4,"Ty\'s Tools Shop", "Large Bolt", 0.69, 4, 10, 500);
         
         partsList.add(smallbolt);
         partsList.add(smallerbolt);
