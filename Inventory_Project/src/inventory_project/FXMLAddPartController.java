@@ -154,7 +154,7 @@ public class FXMLAddPartController implements Initializable {
                     //TODO: Add part to inventory
                     System.out.println(part.toString());
                 }
-                if("OutSourced".equals(partSourceType)){
+                if("OutSourced".equals(partSourceType)){ //Bug Hunt
                     
                     OutSourced part = new OutSourced(partID, companyName, partName, partPrice, partQty, partMin, partMax);
                     //TODO: Add part to inventory
