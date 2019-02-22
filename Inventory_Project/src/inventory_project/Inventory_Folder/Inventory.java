@@ -52,15 +52,17 @@ public class Inventory {
     //TODO: implement
     public void addPart(Part part){
         allParts.add(part);
-        int id = part.getPartCount()-1;
+        int id = part.getPartID();
         System.out.println("Part id: "+ id+ " was added");
     }
     
     //TODO: implement
     public boolean deletePart(Part part){
         boolean isDeleted = false;
-        int id = part.getPartCount();
+        int id = part.getPartID();
+        //Need to find way to get correct id and delete the correct item
         allParts.remove(id);
+        
         System.out.println("Part id: "+ id+ " was removed");
         isDeleted = true;
         

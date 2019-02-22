@@ -60,10 +60,10 @@ public class Inventory_Project extends Application {
         
         partsInventory.printInventoryParts();
         
-        partsInventory.deletePart(smallbolt);
-        partsInventory.deletePart(largeBolt);
+//        partsInventory.deletePart(smallbolt);
+//        partsInventory.deletePart(largeBolt);
         
-        partsInventory.printInventoryParts();
+//        partsInventory.printInventoryParts();
     
         System.exit(0);
     }
