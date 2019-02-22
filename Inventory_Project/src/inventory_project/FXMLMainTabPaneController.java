@@ -5,6 +5,7 @@
  */
 package inventory_project;
 
+import inventory_project.Inventory_Folder.Inventory;
 import inventory_project.Parts_Folder.InHouse;
 import inventory_project.Parts_Folder.OutSourced;
 import inventory_project.Parts_Folder.Part;
@@ -89,7 +90,6 @@ public class FXMLMainTabPaneController implements Initializable {
         
         //Load dummy data
         partsTableView.setItems(getParts());
-    
     }
      
     /**
@@ -113,7 +113,6 @@ public class FXMLMainTabPaneController implements Initializable {
         
         return partsList;
     }
-    
     /**
      * @info: Search Part button clicked
      */
