@@ -1,23 +1,13 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package inventory_project;
 
 import inventory_project.Parts_Folder.InHouse;
 import inventory_project.Parts_Folder.OutSourced;
-import inventory_project.Parts_Folder.Part;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
-import java.util.Set;
-import javafx.application.Platform;
-import javafx.beans.property.BooleanProperty;
-import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -25,18 +15,14 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
-import javafx.scene.control.Toggle;
 import javafx.scene.control.ToggleGroup;
-import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 
 /**
  * FXML Controller class
- *
  * @author Ty
  */
 public class FXMLAddPartController implements Initializable {
@@ -73,6 +59,7 @@ public class FXMLAddPartController implements Initializable {
         
         this.machineIDTextfield.setDisable(false);
         this.companyTextfield.setDisable(true);
+        errorMsg.setText("");
         
        // Radio Button Event Listeners
        //OutSourced Radio Button - Lambda Event Listener 
@@ -83,6 +70,7 @@ public class FXMLAddPartController implements Initializable {
                machineIDTextfield.setDisable(!isNowSelected);
                companyTextfield.setText("");
                sourceType = "InHouse";
+               errorMsg.setText("");
            }
         });
        
@@ -94,6 +82,7 @@ public class FXMLAddPartController implements Initializable {
                machineIDTextfield.setDisable(isNowSelected);
                machineIDTextfield.setText("");
                sourceType = "OutSourced";
+               errorMsg.setText("");
            }
         });
     }    
@@ -133,17 +122,15 @@ public class FXMLAddPartController implements Initializable {
      * @info:   Add Part - Create a new Part
      * @param:  formValues ArrayList -> Validated Add Part form values
      */
-    public void createPart(ArrayList<String> formValues){
-        
+    public boolean createPart(ArrayList<String> formValues){
         
         //If part types are valid
         boolean isValid = areObjectTypesValid(formValues);
-        System.out.println(formValues);
+        boolean wasPartAdded = false;
         if(isValid){
             
             try{
-                if(sourceType == "InHouse"){
-                    String partSourceType = formValues.get(0);
+                if(formValues.get(0).equals("InHouse")){
                     int partID = Integer.parseInt(formValues.get(1));
                     String partName = formValues.get(2);
                     int partQty = Integer.parseInt(formValues.get(3));
@@ -153,14 +140,12 @@ public class FXMLAddPartController implements Initializable {
                     int machineID = Integer.parseInt(formValues.get(8));
                     
                     InHouse part = new InHouse(partID, machineID, partName, partPrice, partQty , partMin, partMax);
-                    
                     //TODO: Add part to inventory
-//                    System.out.println(part.toString());
+                    wasPartAdded = true;
 
                 }
                 
-                if(sourceType == "OutSourced"){ //Bug Hunt
-                    String partSourceType = formValues.get(0);
+                if(formValues.get(0).equals("OutSourced")){ 
                     int partID = Integer.parseInt(formValues.get(1));
                     String partName = formValues.get(2);
                     int partQty = Integer.parseInt(formValues.get(3));
@@ -171,7 +156,7 @@ public class FXMLAddPartController implements Initializable {
                     
                     OutSourced part = new OutSourced(partID, companyName, partName, partPrice, partQty, partMin, partMax);
                     //TODO: Add part to inventory
-//                    System.out.println(part.toString());
+                    wasPartAdded = true;
                 }
             }catch(NullPointerException e){
                 this.errorMsg.setText("Error: Null pntr Please try again...");
@@ -182,47 +167,69 @@ public class FXMLAddPartController implements Initializable {
             }
 
         }
+        return wasPartAdded;
     }
     
     /**
-     * @info:   Add Part - Tests to validate the fields in the
-     *          form are valid
+     * @info:   Add Part - Tests fields in form  ensure they are valid
      * @param:  ArrayList -> Add Part form values
      * @return: boolean
      */
     public boolean areObjectTypesValid(ArrayList<String> formValues){
 
             boolean isValid = false;
+           
             try{
-                if(formValues.get(0).equals("InHouse")){
-                    Integer.parseInt(formValues.get(1));
-                    Integer.parseInt(formValues.get(3));
-                    Double.parseDouble(formValues.get(4));
-                    Integer.parseInt(formValues.get(5));
-                    Integer.parseInt(formValues.get(6));
-                    Integer.parseInt(formValues.get(8));
+                 //Test InHouse inputs for values
+                 if(formValues.get(1).equals("") || formValues.get(2).equals("") ||
+                    formValues.get(3).equals("") || formValues.get(4).equals("") ||
+                    formValues.get(5).equals("") || formValues.get(6).equals("")  || 
+                    formValues.get(8).equals("") ){
+                        resetToDefault();
+                        this.errorMsg.setText("Error: Input values can not be null or empty....");
+                }else{
+                    //Test input value types
+                    if(formValues.get(0).equals("InHouse")){
+                        Integer.parseInt(formValues.get(1));
+                        Integer.parseInt(formValues.get(3));
+                        Double.parseDouble(formValues.get(4));
+                        Integer.parseInt(formValues.get(5));
+                        Integer.parseInt(formValues.get(6));
+                        Integer.parseInt(formValues.get(8));
 
-                    isValid = true;
-                    System.out.println(formValues.get(0)+ " object valid: "+ isValid);
-                }
+                        isValid = true;
+                        //System.out.println(formValues.get(0)+ " object valid: "+ isValid);
+                    }
+                 }
                 
-                if(formValues.get(0).equals("OutSourced")){
-                    Integer.parseInt(formValues.get(1));
-                    Integer.parseInt(formValues.get(3));
-                    Double.parseDouble(formValues.get(4));
-                    Integer.parseInt(formValues.get(5));
-                    Integer.parseInt(formValues.get(6));
+                 //Test OutSourced inputs for values
+                 if(formValues.get(1).equals("") || formValues.get(2).equals("") ||
+                    formValues.get(3).equals("") || formValues.get(4).equals("") ||
+                    formValues.get(5).equals("") || formValues.get(6).equals("")  || 
+                    formValues.get(7).equals("") ){
+                        resetToDefault();
+                        this.errorMsg.setText("Error: Input values can not be null or empty....");
+                }else{
+                    if(formValues.get(0).equals("OutSourced")){
+                        Integer.parseInt(formValues.get(1));
+                        Integer.parseInt(formValues.get(3));
+                        Double.parseDouble(formValues.get(4));
+                        Integer.parseInt(formValues.get(5));
+                        Integer.parseInt(formValues.get(6));
 
-                    isValid = true;
-                    System.out.println(formValues.get(0)+ " object valid: "+ isValid);
-                }
+                        isValid = true;
+                        //System.out.println(formValues.get(0)+ " object valid: "+ isValid);
+                    }
+                 }
                 
             }catch(NumberFormatException e){
                 System.out.println("In House Number exception-> Is " +formValues.get(0)+ " object valid: "+ isValid);
                 resetToDefault();
+                this.errorMsg.setText("Error: Input type mismatch. Please, Try again!");
             }catch(Exception e){
                 System.out.println("General Exception-> Is" +formValues.get(0)+ " object valid: "+ isValid);
                 resetToDefault();
+                this.errorMsg.setText("Error: Unknown error. Please, Try again!");
             }
 
         return isValid;
@@ -244,7 +251,7 @@ public class FXMLAddPartController implements Initializable {
         this.companyTextfield.setText("");
         this.machineIDTextfield.setText("");
         this.machineIDTextfield.setDisable(false);
-//        this.errorMsg.setText("");
+        this.errorMsg.setText("");
         
     }
     
@@ -254,16 +261,21 @@ public class FXMLAddPartController implements Initializable {
      * @throws IOException
      */
     public void savePartButtonClicked(ActionEvent event) throws IOException{
-        //TODO: Implement
-        System.out.println("Add Part - Save button clicked");
-        
         //Get Form Values
         ArrayList formValues = getFormValues();
-        createPart(formValues);
-
         
-        //Switch back to the main tab pane
-        //changeTo_mainTabViewView(event);
+        //Create new Part
+        try{
+            boolean wasPartCreated = createPart(formValues);
+            
+            if(wasPartCreated){
+                changeTo_mainTabViewView(event);  
+                System.out.println("New Part was added!");
+            }
+
+        }catch(Exception e){
+            System.out.print("Error: Create Part");
+        }  
     }
     
     /**
@@ -272,8 +284,6 @@ public class FXMLAddPartController implements Initializable {
      * @throws IOException
      */
     public void cancelPartButtonClicked(ActionEvent event) throws IOException{
-        //TODO: Implement
-        System.out.println("Add Part - Cancel button clicked");
         
         //Switch back to the main tab pane
         changeTo_mainTabViewView(event);
@@ -285,7 +295,6 @@ public class FXMLAddPartController implements Initializable {
      * @throws IOException
      */
     public void changeTo_mainTabViewView(ActionEvent event) throws IOException{
-        // TODO: Need to get part number to modify
         try{
             Parent root = FXMLLoader.load(getClass().getResource("FXMLMainTabPane.fxml"));
             Scene rootView = new Scene(root);
