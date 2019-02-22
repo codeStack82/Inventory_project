@@ -13,7 +13,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.ResourceBundle;
-import java.util.Set;
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -64,11 +64,15 @@ public class FXMLMainTabPaneController implements Initializable {
     @FXML private Button modifyProductystemButton;
     @FXML private Button deleteProductSystemButton;
     
+    //Menu
+//    @FXML private MenuBar menuBar;
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         
         //Initialize Parts TableView
         initializePartsTable();
+
 
     }   
     
@@ -77,7 +81,7 @@ public class FXMLMainTabPaneController implements Initializable {
      */
     public void initializePartsTable(){ 
         //Setup column in table
-        partIDColumn.setCellValueFactory(   new PropertyValueFactory<>("partID"));
+        partIDColumn.setCellValueFactory( new PropertyValueFactory<>("partID"));
         partNameColumn.setCellValueFactory( new PropertyValueFactory<>("name"));
         //TODO: Need to get qty in this cell factory
         partQtyColumn.setCellValueFactory(  new PropertyValueFactory<>("max"));
@@ -96,11 +100,11 @@ public class FXMLMainTabPaneController implements Initializable {
         
         ObservableList<Part> partsList = FXCollections.observableArrayList();
         
-        InHouse smallbolt = new InHouse(1,23, "Small Bolt", 0.55, true, 10, 500);
-        InHouse smallerbolt = new InHouse(2,23, "Smaller Bolt", 0.52, true, 10, 500);
+        InHouse smallbolt = new InHouse(1,23, "Small Bolt", 0.55, 4, 10, 500);
+        InHouse smallerbolt = new InHouse(2,23, "Smaller Bolt", 0.52, 4, 10, 500);
 
-        OutSourced mediumBolt = new OutSourced(3,"Ty\'s Tools Shop", "Medium Bolt", 0.65, true, 10, 500);
-        OutSourced largeBolt = new OutSourced(4,"Ty\'s Tools Shop", "Large Bolt", 0.69, true, 10, 500);
+        OutSourced mediumBolt = new OutSourced(3,"Ty\'s Tools Shop", "Medium Bolt", 0.65, 4, 10, 500);
+        OutSourced largeBolt = new OutSourced(4,"Ty\'s Tools Shop", "Large Bolt", 0.69, 4, 10, 500);
         
         partsList.add(smallbolt);
         partsList.add(smallerbolt);
@@ -143,12 +147,21 @@ public class FXMLMainTabPaneController implements Initializable {
      */
     public void changeTo_addPartView(ActionEvent event) throws IOException{
         
-        Parent addPart = FXMLLoader.load(getClass().getResource("FXMLAddPart.fxml"));
-        Scene addPartScene = new Scene(addPart);
-        
-        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
-        window.setScene(addPartScene);
-        window.show();
+        try{
+            Parent addPart = FXMLLoader.load(getClass().getResource("FXMLAddPart.fxml"));
+            Scene addPartScene = new Scene(addPart);
+
+            Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+            
+            // App Part window properties
+            window.setTitle("Add Part Menu");
+            window.setResizable(false);
+
+            window.setScene(addPartScene);
+            window.show();
+        }catch(IOException e){
+            System.out.println("Can't load Add Part window?");
+        }
     
     }
     
@@ -159,13 +172,21 @@ public class FXMLMainTabPaneController implements Initializable {
      */
     public void changeTo_modifyPartView(ActionEvent event) throws IOException{
         // TODO: Need to get part number to modify
-        
-        Parent addPart = FXMLLoader.load(getClass().getResource("FXMLModifyPart.fxml"));
-        Scene addPartScene = new Scene(addPart);
-        
-        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
-        window.setScene(addPartScene);
-        window.show();
+        try{
+            Parent addPart = FXMLLoader.load(getClass().getResource("FXMLModifyPart.fxml"));
+            Scene addPartScene = new Scene(addPart);
+
+            Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+            
+            // Modify Part window properties
+            window.setTitle("Modify Part Menu");
+            window.setResizable(false);
+            
+            window.setScene(addPartScene);
+            window.show();
+        }catch(IOException e){
+            System.out.println("Can't load Modify Part window?");
+        }
     
     }
     
@@ -177,12 +198,21 @@ public class FXMLMainTabPaneController implements Initializable {
      */
     public void changeTo_addProductView(ActionEvent event) throws IOException{
         
-        Parent addPart = FXMLLoader.load(getClass().getResource("FXMLAddProduct.fxml"));
-        Scene addPartScene = new Scene(addPart);
-        
-        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
-        window.setScene(addPartScene);
-        window.show();
+        try{
+            Parent addPart = FXMLLoader.load(getClass().getResource("FXMLAddProduct.fxml"));
+            Scene addPartScene = new Scene(addPart);
+
+            Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+            
+            // Add Product window properties
+            window.setTitle("Add Product Menu");
+            window.setResizable(false);
+            
+            window.setScene(addPartScene);
+            window.show();
+        }catch(IOException e){
+            System.out.println("Can't load Add Product window?");
+        }     
     
     }
     
@@ -193,14 +223,38 @@ public class FXMLMainTabPaneController implements Initializable {
      */
     public void changeTo_modifyProductView(ActionEvent event) throws IOException{
         // TODO: Need to get part number to modify
-        
-        Parent addPart = FXMLLoader.load(getClass().getResource("FXMLModifyProduct.fxml"));
-        Scene addPartScene = new Scene(addPart);
-        
-        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
-        window.setScene(addPartScene);
-        window.show();
+        try{
+            Parent addPart = FXMLLoader.load(getClass().getResource("FXMLModifyProduct.fxml"));
+            Scene addPartScene = new Scene(addPart);
+
+            Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+            
+             // Modify Product window properties
+            window.setTitle("Modify Product Menu");
+            window.setResizable(false);
+            
+            window.setScene(addPartScene);
+            window.show();
+        }catch(IOException e){
+            System.out.println("Can't load Modify Product window?");
+        }     
     
+    }
+    
+    /**
+     * @info: Menu Bar - Exit Application
+     */
+    public void close_main_window(){
+        Platform.exit();
+        System.exit(0);
+    }
+    
+    /**
+     * @info: Menu Bar - Exit Application
+     */
+    public void exitButton(){
+        Platform.exit();
+        System.exit(0);
     }
     
 }

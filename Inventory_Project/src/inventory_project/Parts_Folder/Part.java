@@ -16,9 +16,9 @@ public abstract class Part {
 
     public abstract void setPrice(double price);
 
-    public abstract boolean getInStock();
+    public abstract int getInStock();
 
-    public abstract void setInStock(boolean inStock);
+    public abstract void setInStock(int inStock);
 
     public abstract int getMin();
 

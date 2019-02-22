@@ -5,15 +5,11 @@
  */
 package inventory_project;
 
-//import inventory_project.Parts_Folder.InHouse;
-//import inventory_project.Parts_Folder.OutSourced;
-//import inventory_project.Parts_Folder.Part;
-//import inventory_project.Products_Folder.Product;
-//import java.util.ArrayList;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 /**
@@ -27,6 +23,10 @@ public class Inventory_Project extends Application {
         Parent root = FXMLLoader.load(getClass().getResource("FXMLMainTabPane.fxml"));
         
         Scene scene = new Scene(root);
+        
+        //Root stage properties
+        stage.setResizable(false);
+        stage.setTitle("Inventory Management System - v1.0");
         
         stage.setScene(scene);
         stage.show();

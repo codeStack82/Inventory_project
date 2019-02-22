@@ -71,13 +71,16 @@ public class FXMLModifyProductController implements Initializable {
      */
     public void changeTo_mainTabViewView(ActionEvent event) throws IOException{
         // TODO: Need to get part number to modify
-        
-        Parent addPart = FXMLLoader.load(getClass().getResource("FXMLMainTabPane.fxml"));
-        Scene addPartScene = new Scene(addPart);
-        
-        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
-        window.setScene(addPartScene);
-        window.show();
+        try{
+            Parent root = FXMLLoader.load(getClass().getResource("FXMLMainTabPane.fxml"));
+            Scene addScene = new Scene(root);
+
+            Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+            window.setScene(addScene);
+            window.show();
+        }catch(IOException e){
+            System.out.println("In Modify Product - Can't load Main Tab window?");
+        }
     
     }  
     

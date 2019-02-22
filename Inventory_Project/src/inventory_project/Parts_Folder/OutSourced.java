@@ -14,19 +14,19 @@ public class OutSourced extends Part {
    //Class variables
     private int partID;
     private String companyName;
-    private String name;
+    private String partName;
     private double price;
-    private boolean inStock;
+    private int inStock;
     private int min;
     private int max;
     private static int outSourcedPartCount = 0;
     
     
     //Constructor(s)
-    public OutSourced(int partID, String companyName, String name, double price, boolean inStock, int min, int max) {
+    public OutSourced(int partID, String companyName, String partName, double price, int inStock, int min, int max) {
         this.partID = partID;
         this.companyName = companyName;
-        this.name = name;
+        this.partName = partName;
         this.price = price;
         this.inStock = inStock;
         this.min = min;
@@ -43,17 +43,17 @@ public class OutSourced extends Part {
 
     public void setPartID(int partID) {this.partID = partID;}
 
-    public String getName() {return this.name;}
+    public String getName() {return this.partName;}
 
-    public void setName(String name) {this.name = name;}
+    public void setName(String partName) {this.partName = partName;}
 
     public double getPrice() {return this.price;}
 
     public void setPrice(double price) {this.price = price;}
 
-    public boolean getInStock() {return this.inStock;}
+    public int getInStock() {return this.inStock;}
 
-    public void setInStock(boolean inStock) {this.inStock = inStock;}
+    public void setInStock(int inStock) {this.inStock = inStock;}
 
     public int getMin() {return this.min;}
 
@@ -72,7 +72,7 @@ public class OutSourced extends Part {
         sb.append(this.getPartID());
         sb.append("\tCompany Name: ");
         sb.append(this.getCompanyName());
-        sb.append(", Name: ");
+        sb.append(", Part name: ");
         sb.append(this.getName());
         sb.append(", Price: ");
         sb.append(this.getPrice());

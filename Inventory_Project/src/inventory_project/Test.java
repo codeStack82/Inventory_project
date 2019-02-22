@@ -20,14 +20,14 @@ public class Test {
     public static void main(String args[]){
         
         //In house parts
-        InHouse part1 = new InHouse(1,23, "Bolt", 0.55, true, 10, 500);
+        InHouse part1 = new InHouse(1,23, "Bolt", 0.55, 4, 10, 500);
         System.out.println(part1.toString());
 
         //Outsourced Parts
-        OutSourced part2 = new OutSourced(2,"Ty Tools 123", "Bolt", 0.55, true, 10, 500);
+        OutSourced part2 = new OutSourced(2,"Ty Tools 123", "Bolt", 0.55, 4, 10, 500);
         System.out.println(part2.toString());
 
-        OutSourced part3 = new OutSourced(3,"Brad Tools 456", "Washers", 0.55, true, 10, 500);
+        OutSourced part3 = new OutSourced(3,"Brad Tools 456", "Washers", 0.55, 4, 10, 500);
         System.out.println(part3.toString());
 
         //Build Products
