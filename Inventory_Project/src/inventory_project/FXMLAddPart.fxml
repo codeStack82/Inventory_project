@@ -54,7 +54,7 @@
                   <HBox fx:id="companyNameContainer" prefHeight="35.0" prefWidth="380.0">
                      <children>
                         <Label prefWidth="100.0" text="Company" />
-                        <TextField fx:id="companyTextfield" disable="true" promptText="Company" />
+                        <TextField fx:id="companyTextfield" promptText="Company Name" />
                      </children>
                   </HBox>
                   <HBox fx:id="machineIDContainer" prefHeight="31.0" prefWidth="281.0">

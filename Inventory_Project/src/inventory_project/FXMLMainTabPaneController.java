@@ -249,4 +249,12 @@ public class FXMLMainTabPaneController implements Initializable {
         System.exit(0);
     }
     
+    /**
+     * @info: Menu Bar - Exit Application
+     */
+    public void exitButton(){
+        Platform.exit();
+        System.exit(0);
+    }
+    
 }

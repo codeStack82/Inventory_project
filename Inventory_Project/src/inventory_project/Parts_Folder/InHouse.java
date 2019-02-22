@@ -13,7 +13,7 @@ public class InHouse extends Part {
     //Class variables
     private int machineID;
     private int partID;
-    private String name;
+    private String partName;
     private double price;
     private int inStock;
     private int min;
@@ -21,10 +21,10 @@ public class InHouse extends Part {
     private static int inHousePartCount = 0;
     
     //Constructor(s)
-    public InHouse(int partID, int machineID, String name, double price, int inStock, int min, int max) {
+    public InHouse(int partID, int machineID, String partName, double price, int inStock, int min, int max) {
         this.partID = partID;
         this.machineID = machineID;
-        this.name = name;
+        this.partName = partName;
         this.price = price;
         this.inStock = inStock;
         this.min = min;
@@ -41,9 +41,9 @@ public class InHouse extends Part {
 
     public void setPartID(int partID) {this.partID = partID;}
 
-    public String getName() {return this.name;}
+    public String getName() {return this.partName;}
 
-    public void setName(String name) {this.name = name;}
+    public void setName(String partName) {this.partName = partName;}
 
     public double getPrice() {return this.price;}
 
@@ -68,15 +68,15 @@ public class InHouse extends Part {
         StringBuilder sb = new StringBuilder("In House part information:\n");
         sb.append("\tPart Id: ");
         sb.append(this.getPartID());
-         sb.append("\tMachine Id: ");
+        sb.append("\t Machine Id: ");
         sb.append(this.getMachineID());
-        sb.append(", Name: ");
+        sb.append(", Part name: ");
         sb.append(this.getName());
         sb.append(", Price: ");
         sb.append(this.getPrice());
         sb.append(", In Stock: ");
         sb.append(this.getInStock());
-        sb.append(", In House Part Count: ");
+        sb.append(", In House part count: ");
         sb.append(this.getPartCount());
         sb.append(", Min: ");
         sb.append(this.getMin());

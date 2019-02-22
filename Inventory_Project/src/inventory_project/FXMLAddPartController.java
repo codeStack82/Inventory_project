@@ -92,6 +92,7 @@ public class FXMLAddPartController implements Initializable {
                //System.out.println("Outsourced is selected: "+ isNowSelected);
                companyTextfield.setDisable(!isNowSelected);
                machineIDTextfield.setDisable(isNowSelected);
+               machineIDTextfield.setText("");
                sourceType = "OutSourced";
            }
         });
@@ -134,33 +135,46 @@ public class FXMLAddPartController implements Initializable {
      */
     public void createPart(ArrayList<String> formValues){
         
+        
         //If part types are valid
         boolean isValid = areObjectTypesValid(formValues);
+        System.out.println(formValues);
         if(isValid){
             
             try{
-                String partSourceType = formValues.get(0);
-                int partID = Integer.parseInt(formValues.get(1));
-                String partName = formValues.get(2);
-                int partQty = Integer.parseInt(formValues.get(3));
-                double partPrice = Double.parseDouble(formValues.get(4));
-                int partMax = Integer.parseInt(formValues.get(5));
-                int partMin = Integer.parseInt(formValues.get(6));
-                String companyName = formValues.get(7);
-                int machineID = Integer.parseInt(formValues.get(8));
-                
-                if("InHouse".equals(partSourceType)){
+                if(sourceType == "InHouse"){
+                    String partSourceType = formValues.get(0);
+                    int partID = Integer.parseInt(formValues.get(1));
+                    String partName = formValues.get(2);
+                    int partQty = Integer.parseInt(formValues.get(3));
+                    double partPrice = Double.parseDouble(formValues.get(4));
+                    int partMax = Integer.parseInt(formValues.get(5));
+                    int partMin = Integer.parseInt(formValues.get(6));
+                    int machineID = Integer.parseInt(formValues.get(8));
+                    
                     InHouse part = new InHouse(partID, machineID, partName, partPrice, partQty , partMin, partMax);
                     
                     //TODO: Add part to inventory
-                    System.out.println(part.toString());
+//                    System.out.println(part.toString());
+
                 }
-                if("OutSourced".equals(partSourceType)){ //Bug Hunt
+                
+                if(sourceType == "OutSourced"){ //Bug Hunt
+                    String partSourceType = formValues.get(0);
+                    int partID = Integer.parseInt(formValues.get(1));
+                    String partName = formValues.get(2);
+                    int partQty = Integer.parseInt(formValues.get(3));
+                    double partPrice = Double.parseDouble(formValues.get(4));
+                    int partMax = Integer.parseInt(formValues.get(5));
+                    int partMin = Integer.parseInt(formValues.get(6));
+                    String companyName = formValues.get(7);
                     
                     OutSourced part = new OutSourced(partID, companyName, partName, partPrice, partQty, partMin, partMax);
                     //TODO: Add part to inventory
-                    System.out.println(part.toString());
+//                    System.out.println(part.toString());
                 }
+            }catch(NullPointerException e){
+                this.errorMsg.setText("Error: Null pntr Please try again...");
             }catch(NumberFormatException e){
                 this.errorMsg.setText("Error: # frmt Please try again...");
             }catch(Exception e){
@@ -177,27 +191,40 @@ public class FXMLAddPartController implements Initializable {
      * @return: boolean
      */
     public boolean areObjectTypesValid(ArrayList<String> formValues){
-        
+
             boolean isValid = false;
             try{
-                Integer.parseInt(formValues.get(1));
-                Integer.parseInt(formValues.get(3));
-                Double.parseDouble(formValues.get(4));
-                Integer.parseInt(formValues.get(5));
-                Integer.parseInt(formValues.get(6));
-                Integer.parseInt(formValues.get(8));
+                if(formValues.get(0).equals("InHouse")){
+                    Integer.parseInt(formValues.get(1));
+                    Integer.parseInt(formValues.get(3));
+                    Double.parseDouble(formValues.get(4));
+                    Integer.parseInt(formValues.get(5));
+                    Integer.parseInt(formValues.get(6));
+                    Integer.parseInt(formValues.get(8));
 
-                isValid = true;
-                System.out.println(formValues.get(0)+ " object valid: "+ isValid);
+                    isValid = true;
+                    System.out.println(formValues.get(0)+ " object valid: "+ isValid);
+                }
+                
+                if(formValues.get(0).equals("OutSourced")){
+                    Integer.parseInt(formValues.get(1));
+                    Integer.parseInt(formValues.get(3));
+                    Double.parseDouble(formValues.get(4));
+                    Integer.parseInt(formValues.get(5));
+                    Integer.parseInt(formValues.get(6));
 
+                    isValid = true;
+                    System.out.println(formValues.get(0)+ " object valid: "+ isValid);
+                }
+                
             }catch(NumberFormatException e){
-                System.out.println("Number exception-> Is " +formValues.get(0)+ " object valid: "+ isValid);
+                System.out.println("In House Number exception-> Is " +formValues.get(0)+ " object valid: "+ isValid);
                 resetToDefault();
             }catch(Exception e){
                 System.out.println("General Exception-> Is" +formValues.get(0)+ " object valid: "+ isValid);
                 resetToDefault();
             }
-        
+
         return isValid;
     }
     
@@ -231,11 +258,12 @@ public class FXMLAddPartController implements Initializable {
         System.out.println("Add Part - Save button clicked");
         
         //Get Form Values
-        ArrayList<String> formValues = getFormValues();
+        ArrayList formValues = getFormValues();
         createPart(formValues);
+
         
         //Switch back to the main tab pane
-        changeTo_mainTabViewView(event);
+        //changeTo_mainTabViewView(event);
     }
     
     /**
