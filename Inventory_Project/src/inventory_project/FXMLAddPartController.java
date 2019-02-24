@@ -3,6 +3,7 @@ package inventory_project;
 
 import inventory_project.Parts_Folder.InHouse;
 import inventory_project.Parts_Folder.OutSourced;
+import inventory_project.Parts_Folder.Part;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -139,7 +140,7 @@ public class FXMLAddPartController implements Initializable {
                     int partMin = Integer.parseInt(formValues.get(6));
                     int machineID = Integer.parseInt(formValues.get(8));
                     
-                    InHouse part = new InHouse(partID, machineID, partName, partPrice, partQty , partMin, partMax);
+                    InHouse inPart = new InHouse(partID, machineID, partName, partPrice, partQty , partMin, partMax);
                     //TODO: Add part to inventory
                     wasPartAdded = true;
 
@@ -154,7 +155,7 @@ public class FXMLAddPartController implements Initializable {
                     int partMin = Integer.parseInt(formValues.get(6));
                     String companyName = formValues.get(7);
                     
-                    OutSourced part = new OutSourced(partID, companyName, partName, partPrice, partQty, partMin, partMax);
+                    OutSourced outPart = new OutSourced(partID, companyName, partName, partPrice, partQty, partMin, partMax);
                     //TODO: Add part to inventory
                     wasPartAdded = true;
                 }
@@ -267,8 +268,7 @@ public class FXMLAddPartController implements Initializable {
         //Create new Part
         try{
             boolean wasPartCreated = createPart(formValues);
-            
-            if(wasPartCreated){
+            if(wasPartCreated){       
                 changeTo_mainTabViewView(event);  
                 System.out.println("New Part was added!");
             }

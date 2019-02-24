@@ -69,8 +69,6 @@ public class FXMLMainTabPaneController implements Initializable {
 
     public Inventory partsInventory;
     public Inventory productsInventory;
-
-//    private Alert alert;
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -80,7 +78,8 @@ public class FXMLMainTabPaneController implements Initializable {
         productsInventory =  new Inventory();
         
         //Test - Initialize Parts TableView
-        initializePartsTable();        
+        initializePartsTable();    
+//      initializeProductsTable();  
     }   
     
     /**
@@ -91,7 +90,7 @@ public class FXMLMainTabPaneController implements Initializable {
         partIDColumn.setCellValueFactory( new PropertyValueFactory<>("partID"));
         partNameColumn.setCellValueFactory( new PropertyValueFactory<>("name"));
         //TODO: Need to get qty in this cell factory
-        partQtyColumn.setCellValueFactory(  new PropertyValueFactory<>("max"));
+        partQtyColumn.setCellValueFactory(  new PropertyValueFactory<>("inStock"));
         partPriceColumn.setCellValueFactory(new PropertyValueFactory<>("price"));
         
         //Load dummy data
@@ -106,43 +105,26 @@ public class FXMLMainTabPaneController implements Initializable {
         
         ObservableList<Part> partsList = FXCollections.observableArrayList();
         
-        InHouse smallbolt = new InHouse(1,23, "Small Bolt", 0.55, 4, 10, 500);
+        InHouse smallbolt = new InHouse(1,23, "Small Bolt", 0.55, 3, 10, 500);
         InHouse smallerbolt = new InHouse(2,23, "Smaller Bolt", 0.52, 4, 10, 500);
 
-        OutSourced mediumBolt = new OutSourced(3,"Ty\'s Tools Shop", "Medium Bolt", 0.65, 4, 10, 500);
-        OutSourced largeBolt = new OutSourced(4,"Ty\'s Tools Shop", "Large Bolt", 0.69, 4, 10, 500);
+        OutSourced mediumBolt = new OutSourced(3,"Ty\'s Tools Shop", "Medium Bolt", 0.65, 56, 10, 500);
+        OutSourced largeBolt = new OutSourced(4,"Ty\'s Tools Shop", "Large Bolt", 0.69, 17, 10, 500);
         
-        partsList.add(smallbolt);
-        partsList.add(smallerbolt);
-        partsList.add(mediumBolt);
-        partsList.add(largeBolt);
-        
-        partsInventory();
-        
-        return partsList;
-    }
-    
-
-    //Test initialize partInventory
-    public static void partsInventory(){
-        Inventory partsInventory = new Inventory();
-        
-        InHouse smallbolt = new InHouse(15,23, "Small Bolt", 0.55, 4, 10, 500);
-        InHouse smallerbolt = new InHouse(25,23, "Smaller Bolt", 0.52, 4, 10, 500);
-
-        OutSourced mediumBolt = new OutSourced(5,"Ty\'s Tools Shop", "Medium Bolt", 0.65, 4, 10, 500);
-        OutSourced largeBolt = new OutSourced(55,"Ty\'s Tools Shop", "Large Bolt", 0.69, 4, 10, 500);
-        
-        //Add Part method test
+        //Add parts to the parts inventory
         partsInventory.addPart(smallbolt);
         partsInventory.addPart(smallerbolt);
         partsInventory.addPart(mediumBolt);
         partsInventory.addPart(largeBolt);
-        
  
-
-    }
-    
+        //Add parts to the obervable list                               
+        partsList.add(smallbolt);
+        partsList.add(smallerbolt);
+        partsList.add(mediumBolt);
+        partsList.add(largeBolt);
+                
+        return partsList;
+    } 
     
     /**
      * @info: Search Part button clicked
@@ -170,7 +152,7 @@ public class FXMLMainTabPaneController implements Initializable {
             searchPartsTextfield.setText("");
             searchPartsTextfield.setPromptText("Please, Try again...!");
         }catch(Exception e){
-            System.out.println("Error: Search Part button General Exception");
+            System.out.println("Error: Search part button General Exception");
         }
     }
     

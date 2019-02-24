@@ -19,16 +19,16 @@ import java.util.Iterator;
 public class Inventory {
     
     //Class declarations
-    ArrayList allproducts = new ArrayList<Product>();
+    ArrayList allProducts = new ArrayList<Product>();
     ArrayList allParts = new ArrayList<Part>();
     
     //Constrctor(s)
     public Inventory(){};
-    public Inventory(ArrayList parts){};
+    public Inventory(ArrayList list){};
     
     //TODO: implement
     public void addProduct(Product product){
-        allproducts.add(product);
+        allProducts.add(product);
     }
     
     //TODO: implement
@@ -49,6 +49,10 @@ public class Inventory {
     //TODO: implement
     public void updateProduct(int partID){
         
+    }
+    
+    public int productsSize(){
+        return allProducts.size();
     }
     
      /**
@@ -115,6 +119,11 @@ public class Inventory {
     public void updatePart(int partID){
         
     }
+    
+    public int partsSize(){
+        return allParts.size();
+    }
+    
     
     //TODO: implement
     public String toString(Product product){

@@ -20,9 +20,13 @@ import javafx.stage.Stage;
  * @author Ty Hunt
  */
 public class Inventory_Project extends Application {
+    public Inventory partsInventory;
+    public Inventory productsInventory;
     
     @Override
     public void start(Stage stage) throws Exception {
+        
+ 
         Parent root = FXMLLoader.load(getClass().getResource("FXMLMainTabPane.fxml"));
         
         Scene scene = new Scene(root);
