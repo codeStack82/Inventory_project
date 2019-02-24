@@ -10,23 +10,25 @@ import java.util.HashMap;
 import inventory_project.Products_Folder.Product;
 import inventory_project.Parts_Folder.Part;
 import inventory_project.Products_Folder.Product;
+import java.util.Iterator;
 
 /**
  *
  * @author Ty
  */
 public class Inventory {
-    ArrayList products = new ArrayList<Product>();
+    
+    //Class declarations
+    ArrayList allproducts = new ArrayList<Product>();
     ArrayList allParts = new ArrayList<Part>();
-    Map partsMap = new HashMap<>();
-    Map productsMap = new HashMap<>();
-    private static int partsKey = 1000;
-    private static int productsKey = 2000;
+    
+    //Constrctor(s)
+    public Inventory(){};
+    public Inventory(ArrayList parts){};
     
     //TODO: implement
     public void addProduct(Product product){
-        products.add(product);
-        
+        allproducts.add(product);
     }
     
     //TODO: implement
@@ -49,31 +51,64 @@ public class Inventory {
         
     }
     
-    //TODO: implement
+     /**
+     * @info: Method to add new part
+     * @param part
+     */
     public void addPart(Part part){
-        allParts.add(part);
-        int id = part.getPartID();
-        System.out.println("Part id: "+ id+ " was added");
+        try{
+            allParts.add(part);
+            System.out.println("Part:\t\'"+ part.getName() + "\' was added");
+        }catch(Exception e){
+            System.out.println("Part:\t\'"+ part.getName() + "\' was NOT added");
+        }
     }
     
-    //TODO: implement
+    /**
+     * @info: Method to delete part
+     * @param part
+     * @return boolean isDeleted
+     */
     public boolean deletePart(Part part){
         boolean isDeleted = false;
-        int id = part.getPartID();
-        //Need to find way to get correct id and delete the correct item
-        allParts.remove(id);
-        
-        System.out.println("Part id: "+ id+ " was removed");
-        isDeleted = true;
+
+        System.out.println("Removing part: "+ part.getName());
+        try{
+            allParts.remove(part);
+            isDeleted = true;
+        }catch(Exception e){
+            System.out.println("Error: the part " + part.getName() + "was not removed");
+        }
         
         return isDeleted;
     }
     
-    //TODO: implement -> needs to return Part
-    public void lookUpParts(int partID){
-    
+     /**
+     * @info: Method to lookup part
+     * @param part
+     * @return part info
+     */
+    public Part lookUpParts(int partID){
+        Part part = null;
+        int getAllPartsID = -1;
+        try{
+            for(int i = 0; i < allParts.size(); i++){
+                Part partTest = (Part)allParts.get(i);
+                
+                //Get arraylist id of part if exists
+                if(partTest.getPartID() == partID){
+                   getAllPartsID = i;
+                }
+            }
+            // Set part id if exists
+            if(getAllPartsID != -1){
+                part = (Part)allParts.get(getAllPartsID);
+            }
+        }catch(Exception e){
+            System.out.println("Error: Lookup parts method");
+        }
         
-        //return parts;
+        return part;
     }
     
     //TODO: implement

@@ -24,6 +24,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -64,17 +66,21 @@ public class FXMLMainTabPaneController implements Initializable {
     @FXML private Button addProductSystemButton;
     @FXML private Button modifyProductystemButton;
     @FXML private Button deleteProductSystemButton;
-    
-    //Menu
-//    @FXML private MenuBar menuBar;
+
+    public Inventory partsInventory;
+    public Inventory productsInventory;
+
+//    private Alert alert;
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         
-        //Initialize Parts TableView
-        initializePartsTable();
-
-
+        //Initialize Inventories
+        partsInventory = new Inventory();
+        productsInventory =  new Inventory();
+        
+        //Test - Initialize Parts TableView
+        initializePartsTable();        
     }   
     
     /**
@@ -111,19 +117,61 @@ public class FXMLMainTabPaneController implements Initializable {
         partsList.add(mediumBolt);
         partsList.add(largeBolt);
         
+        partsInventory();
+        
         return partsList;
     }
+    
+
+    //Test initialize partInventory
+    public static void partsInventory(){
+        Inventory partsInventory = new Inventory();
+        
+        InHouse smallbolt = new InHouse(15,23, "Small Bolt", 0.55, 4, 10, 500);
+        InHouse smallerbolt = new InHouse(25,23, "Smaller Bolt", 0.52, 4, 10, 500);
+
+        OutSourced mediumBolt = new OutSourced(5,"Ty\'s Tools Shop", "Medium Bolt", 0.65, 4, 10, 500);
+        OutSourced largeBolt = new OutSourced(55,"Ty\'s Tools Shop", "Large Bolt", 0.69, 4, 10, 500);
+        
+        //Add Part method test
+        partsInventory.addPart(smallbolt);
+        partsInventory.addPart(smallerbolt);
+        partsInventory.addPart(mediumBolt);
+        partsInventory.addPart(largeBolt);
+        
+ 
+
+    }
+    
+    
     /**
      * @info: Search Part button clicked
+     * @TODO: Implement alert message system
      */
     public void searchPartButtonClicked(){
     
-        String searchPartText = searchPartsTextfield.getText();
-        searchPartsTextfield.setText("");
+        String searchID = searchPartsTextfield.getText();
         
-        //TODO: implement search part logic
-        
-        System.out.println("Search Text: "+ searchPartText);
+         try{
+            //Get part to search 
+            int searchPart = Integer.parseInt(searchID); 
+            
+            //Search for part
+            try{
+                Part p = (Part)partsInventory.lookUpParts(searchPart);
+                System.out.println("Looked up part:\n\t"+ p.toString());
+            }catch(Exception e){
+                 System.out.println("Looked up part:\n\tPart is not available");
+            }finally{
+                searchPartsTextfield.setText("");
+            }
+            
+        }catch(NumberFormatException numFrmt){
+            searchPartsTextfield.setText("");
+            searchPartsTextfield.setPromptText("Please, Try again...!");
+        }catch(Exception e){
+            System.out.println("Error: Search Part button General Exception");
+        }
     }
     
      /**
@@ -158,6 +206,7 @@ public class FXMLMainTabPaneController implements Initializable {
 
             window.setScene(addPartScene);
             window.show();
+            
         }catch(IOException e){
             System.out.println("Can't load Add Part window?");
         }
@@ -239,6 +288,7 @@ public class FXMLMainTabPaneController implements Initializable {
         }     
     
     }
+   
     
     /**
      * @info: Menu Bar - Exit Application

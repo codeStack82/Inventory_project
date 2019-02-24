@@ -21,6 +21,8 @@ public class InHouse extends Part {
     private static int inHousePartCount = 0;
     
     //Constructor(s)
+    public InHouse(){}
+    
     public InHouse(int partID, int machineID, String partName, double price, int inStock, int min, int max) {
         this.partID = partID;
         this.machineID = machineID;

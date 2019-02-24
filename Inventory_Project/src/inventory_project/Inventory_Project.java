@@ -41,31 +41,8 @@ public class Inventory_Project extends Application {
      */
     
     public static void main(String[] args) {
-        //launch(args);
-        partsInventory();
+        launch(args);
     }
-    public static void partsInventory(){
-        Inventory partsInventory = new Inventory();
-        
-        InHouse smallbolt = new InHouse(15,23, "Small Bolt", 0.55, 4, 10, 500);
-        InHouse smallerbolt = new InHouse(25,23, "Smaller Bolt", 0.52, 4, 10, 500);
-
-        OutSourced mediumBolt = new OutSourced(5,"Ty\'s Tools Shop", "Medium Bolt", 0.65, 4, 10, 500);
-        OutSourced largeBolt = new OutSourced(55,"Ty\'s Tools Shop", "Large Bolt", 0.69, 4, 10, 500);
-        
-        partsInventory.addPart(smallbolt);
-        partsInventory.addPart(smallerbolt);
-        partsInventory.addPart(mediumBolt);
-        partsInventory.addPart(largeBolt);
-        
-        partsInventory.printInventoryParts();
-        
-//        partsInventory.deletePart(smallbolt);
-//        partsInventory.deletePart(largeBolt);
-        
-//        partsInventory.printInventoryParts();
-    
-        System.exit(0);
-    }
+   
     
 }

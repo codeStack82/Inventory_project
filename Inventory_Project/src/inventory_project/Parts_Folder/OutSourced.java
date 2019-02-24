@@ -23,6 +23,7 @@ public class OutSourced extends Part {
     
     
     //Constructor(s)
+    public OutSourced(){}
     public OutSourced(int partID, String companyName, String partName, double price, int inStock, int min, int max) {
         this.partID = partID;
         this.companyName = companyName;
