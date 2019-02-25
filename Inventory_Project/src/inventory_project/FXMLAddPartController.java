@@ -237,26 +237,6 @@ public class FXMLAddPartController implements Initializable {
     }
     
     /**
-     * @info: Add Part - reset form values to default
-     */
-    public void resetToDefault(){
-        this.idTextfield.setText("");
-        this.nameTextfield.setText("");
-        this.qtyTextfield.setText("");
-        this.priceTextfield.setText("");
-        this.maxTextfield.setText("");
-        this.minTextfield.setText("");
-        this.companyTextfield.setText("");
-        this.inHouseRadioButton.setSelected(true);
-        this.companyTextfield.setDisable(true);
-        this.companyTextfield.setText("");
-        this.machineIDTextfield.setText("");
-        this.machineIDTextfield.setDisable(false);
-        this.errorMsg.setText("");
-        
-    }
-    
-    /**
      * @info: Add Part - save button event
      * @param event
      * @throws IOException
@@ -264,10 +244,11 @@ public class FXMLAddPartController implements Initializable {
     public void savePartButtonClicked(ActionEvent event) throws IOException{
         //Get Form Values
         ArrayList formValues = getFormValues();
+        boolean wasPartCreated = createPart(formValues);
         
         //Create new Part
         try{
-            boolean wasPartCreated = createPart(formValues);
+            wasPartCreated = createPart(formValues);
             if(wasPartCreated){       
                 changeTo_mainTabViewView(event);  
                 System.out.println("New Part was added!");
@@ -294,6 +275,28 @@ public class FXMLAddPartController implements Initializable {
      * @param event
      * @throws IOException
      */
+    
+     /**
+     * @info: Add Part - reset form values to default
+     */
+    public void resetToDefault(){
+        this.idTextfield.setText("");
+        this.nameTextfield.setText("");
+        this.qtyTextfield.setText("");
+        this.priceTextfield.setText("");
+        this.maxTextfield.setText("");
+        this.minTextfield.setText("");
+        this.companyTextfield.setText("");
+        this.inHouseRadioButton.setSelected(true);
+        this.companyTextfield.setDisable(true);
+        this.companyTextfield.setText("");
+        this.machineIDTextfield.setText("");
+        this.machineIDTextfield.setDisable(false);
+        this.errorMsg.setText(""); 
+    }
+    
+    
+    
     public void changeTo_mainTabViewView(ActionEvent event) throws IOException{
         try{
             Parent root = FXMLLoader.load(getClass().getResource("FXMLMainTabPane.fxml"));

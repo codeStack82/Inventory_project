@@ -47,6 +47,7 @@ public class FXMLMainTabPaneController implements Initializable {
     @FXML private TextField searchPartsTextfield;
     @FXML private Button    searchPartSystemButton; 
     
+    
     //Parts Table View
     @FXML private TableView<Part> partsTableView;
     @FXML private TableColumn<Part, String> partIDColumn;
@@ -69,6 +70,7 @@ public class FXMLMainTabPaneController implements Initializable {
 
     public Inventory partsInventory;
     public Inventory productsInventory;
+    
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
